@@ -1,19 +1,18 @@
-'use client';
+"use client";
 
-import {motion} from "framer-motion";
-import Description from "@/app/description";
-import Technologies from "@/app/Technologies";
+
+import AnimatedText from "@/utils/animatedText";
+import React from "react";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
 
   return (
-    <main className="flex flex-col items-center p-12 gap-10 text-lg">
-      <motion.h1
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1 , scale: 1}}
-        className="text-4xl font-bold">Filip Kasperski's Portfolio</motion.h1>
-      <Description/>
-      <Technologies/>
+    <main className="flex flex-col text-center justify-center items-center min-h-screen gap-5 text-3xl">
+      <AnimatedText className="text-4xl">
+        Welcome to my portfolio.
+      </AnimatedText>
+      <AboutMe/>
     </main>
   );
 }
