@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Pixelify_Sans} from "next/font/google";
+import {  Raleway as googleFont} from "next/font/google";
 import "./globals.css";
 import React from "react";
+import BurgerMenu from "@/components/BurgerMenu";
 
-const font = Pixelify_Sans({ subsets: ["latin"] });
+const font = googleFont( {subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Filip Kasperski - Portfolio",
@@ -16,8 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
-      <body className={`${font.className} flex flex-col text-emerald-500 min-h-screen bg-gradient-radial from-emerald-950 to-[#010d0a]`}>
+    <html lang="en">
+      <body className={`${font.className} flex flex-col items-center font-bold bg-neutral-900 text-white min-h-screen`}>
+      <BurgerMenu />
       {children}
       </body>
     </html>
