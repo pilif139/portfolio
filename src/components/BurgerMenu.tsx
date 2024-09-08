@@ -2,58 +2,44 @@
 
 import React from "react";
 import {useState} from "react";
-import {AnimatePresence, motion} from "framer-motion";
-import Animated from "@/components/Animated";
-import {slideIn} from "@/utils/animations";
+import { motion} from "framer-motion";
+import Modal from "@/components/Modal";
 import Link from 'next/link'
 
 export default function BurgerMenu(){
     const [isOpen, setIsOpen] = useState(false);
 
+    const routes = [
+        {name: "Home", path: "/"},
+        {name: "About Me", path: "/about"},
+        {name: "Projects", path: "/projects"},
+    ]
+
     return (
         <>
-          <div
-              className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125"
+          <motion.div
+              className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125 cursor-pointer"
               onClick={()=>setIsOpen(!isOpen)}
+              whileHover={{scale: 1.2}}
           >
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
-          </div>
+          </motion.div>
           <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-            <ul className="flex flex-col text-3xl gap-3 w-[18vw]">
-              <Link href={"/about"}>About Me</Link>
-              <Link href={"/projects"}>Projects</Link>
-            </ul>
+            <motion.div
+                initial={{x: "100%"}}
+                animate={{x: 0}}
+                exit={{x: "100%"}}
+                transition={{duration: 0.25, type: "spring", stiffness: 150, damping: 25}}
+                className="p-6 bg-neutral-800 h-screen min-w-[10vw]">
+              <ul className="flex flex-col text-3xl gap-3 w-[18vw]">
+                {routes.map((route, index) => (
+                    <Link onClick={()=>setIsOpen(false)} href={route.path} className="hover:text-gray-400 transition-colors" key={index}>{route.name}</Link>
+                ))}
+              </ul>
+            </motion.div>
           </Modal>
         </>
     )
-}
-
-type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-};
-
-function Modal({ isOpen, onClose, children }: ModalProps) {
-
-  return (
-      <AnimatePresence>
-      {isOpen &&
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="fixed inset-0 bg-black opacity-80" onClick={onClose}></div>
-
-          <motion.div
-              initial={{x: "100%"}}
-              animate={{x: 0}}
-              exit={{x: "100%"}}
-              transition={{duration: 0.5, type: "spring", stiffness: 200, damping: 25}}
-              className="absolute right-0 top-0 p-6 bg-neutral-800 h-screen min-w-[10vw]">
-            {children}
-          </motion.div>
-      </div>
-      }
-      </AnimatePresence>
-  );
 }
