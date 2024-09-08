@@ -1,9 +1,33 @@
-import img1 from "./project_1.png";
-import img2 from "./project_2.png";
-import img3 from "./project_3.png";
-import {SiJavascript, SiPostgresql, SiPrisma, SiReact, SiTypescript} from "react-icons/si";
+import p1i1 from "./project_1/1.png";
+import p1i2 from "./project_1/2.png";
+import p1i3 from "./project_1/3.png";
+import p1i4 from "./project_1/4.png";
+import p1i5 from "./project_1/5.png";
+
+import p2i1 from "./project_2/1.png";
+import p2i2 from "./project_2/2.png";
+import p2i3 from "./project_2/3.png";
+import p2i4 from "./project_2/4.png";
+
+import p3i1 from "./project_3/1.png";
+
+import p4i1 from "./project_4/1.png";
+import p4i2 from "./project_4/2.png";
+
+import p5i1 from "./project_5/1.png";
+import p5i2 from "./project_5/2.png";
+import p5i3 from "./project_5/3.png";
+import p5i4 from "./project_5/4.png";
+import p5i5 from "./project_5/5.png";
+import p5i6 from "./project_5/6.png";
+import p5i7 from "./project_5/7.png";
+import p5i8 from "./project_5/8.png";
+import p5i9 from "./project_5/9.png";
+
+import {SiJavascript, SiJsonwebtokens, SiPostgresql, SiPrisma, SiReact, SiSqlite, SiTypescript} from "react-icons/si";
 import {RiNextjsFill, RiTailwindCssFill} from "react-icons/ri";
 import {FaDocker} from "react-icons/fa";
+import {FaGolang} from "react-icons/fa6";
 
 export const projects = [
   {
@@ -23,7 +47,8 @@ export const projects = [
     ,
     githubLink: "https://github.com/pilif139/url-shortener",
     link: "https://url-shortener-mu-three.vercel.app/",
-    image : img1,
+    image : p1i1,
+    images: [p1i1,p1i2,p1i3,p1i4,p1i5]
   },
   {
     id: 2,
@@ -37,7 +62,8 @@ export const projects = [
     ],
     githubLink: "https://github.com/pilif139/react-shop-app",
     link: "https://pilif139.github.io/react-shop-app/",
-    image : img2,
+    image : p2i1,
+    images: [p2i1,p2i2,p2i3,p2i4]
   },
   {
     id: 3,
@@ -49,6 +75,32 @@ export const projects = [
       {Icon: SiJavascript, name: "JavaScript"},
     ],
     githubLink: "https://github.com/pilif139/image_gallery",
-    image : img3,
+    image : p3i1,
+  },
+  {
+    id: 4,
+    title: "Go Shell",
+    description: "A simple shell written in Go.",
+   longDescription: "This project was my first Go application. I learned standard library, how to use go modules, how to work with files and directories, how to create simple shell commands. Before that I had no experience with Go, so i had to learn basics of go from Go By Example course and go documentation. ",
+    technologies: [
+      {Icon: FaGolang, name: "Go"},
+    ],
+    githubLink: "https://github.com/pilif139/go-shell",
+    image : p4i1,
+    images: [p4i1,p4i2]
+  },
+  {
+    id: 5,
+    title: "Go To Do App",
+    description: "A simple to do app written in Go.",
+    longDescription: "This was my first go web appliaction. I used here fiber framework, which is very similar to express.js. I learned how to create routes, use context, create middleware etc. For database i used sqlite3, which is very easy to use. I didn't use any ORM, for this i used SQLx library that allows me to use sql queries in go without any security problems. I exapanded my knowledge about web security. I used JWT tokens stored in cookies to authenticate users. I also learned how to hash passwords and store them in database.",
+    technologies: [
+        {Icon: FaGolang, name: "Go"},
+        {Icon: SiSqlite, name: "SQLite"},
+        {Icon : SiJsonwebtokens , name: "JWT"},
+    ],
+    githubLink: "https://github.com/pilif139/go-fiber-to-do",
+    image : p5i1,
+    images: [p5i1,p5i2,p5i3,p5i4,p5i5,p5i6,p5i7,p5i8,p5i9],
   }
 ]

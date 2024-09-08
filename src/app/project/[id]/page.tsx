@@ -8,6 +8,7 @@ import {fadeIn, popUp} from "@/utils/animations";
 import React from "react";
 import {FaGithub} from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
+import ImageSlider from "@/components/ImageSlider";
 
 export default function ProjectPage({params} : {params: {id : string}}) {
     const project = projects.find(project => project.id === Number(params.id));
@@ -21,12 +22,17 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                 <h1 className="text-6xl">{project?.title}</h1>
             </FadeOutOverlay>
 
-            <Animated animation={fadeIn} className="py-6 flex flex-col items-center gap-6 text-xl m-auto w-[80vw]">
-                <h1 className="text-6xl">{project?.title}</h1>
-                <p>{project?.description}</p>
-              <div className="flex gap-4 justify-center font-semibold py-4">
+            <Animated animation={fadeIn} className="py-6 flex flex-col items-center gap-6 text-xl m-auto w-[95vw]">
+              <h1 className="text-6xl">{project?.title}</h1>
+              <p>{project?.description}</p>
+              <div className="flex gap-20 justify-center font-semibold py-16">
 
-                <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />
+                {project?.images === undefined && <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />}
+                { project?.images &&
+                  <div className="w-[45vw] h-fit">
+                  <ImageSlider images={project?.images}/>
+                </div>
+                }
 
                 <div className="flex flex-col">
                   {/*About project*/}
