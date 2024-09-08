@@ -3,6 +3,7 @@ import {  Raleway as googleFont} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import BurgerMenu from "@/components/BurgerMenu";
+import Footer from "@/components/Footer";
 
 const font = googleFont( {subsets: ["latin"]});
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${font.className} flex flex-col items-center font-bold bg-neutral-900 text-white min-h-screen`}>
       <BurgerMenu />
       {children}
+      <Footer/>
       </body>
     </html>
   );
