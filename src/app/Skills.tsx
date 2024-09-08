@@ -8,6 +8,7 @@ import {FaCss3, FaGitAlt, FaHtml5, FaJs, FaPython, FaReact} from "react-icons/fa
 import {SiCsharp, SiMariadb, SiMysql, SiPrisma, SiTypescript} from "react-icons/si";
 import {RiNextjsFill, RiTailwindCssFill} from "react-icons/ri";
 import {FaGolang} from "react-icons/fa6";
+import IconList from "@/components/IconList";
 
 export default function Skills() {
   const icons = [
@@ -30,10 +31,8 @@ export default function Skills() {
   return (
       <div className="flex flex-col items-center">
         <Animated animation={popUp} className="text-4xl">My Skills</Animated>
-        <div className="w-[35vw] h-32 flex gap-4 my-6 rounded-xl flex-wrap">
-          {icons.map(({Icon, name}, index) => (
-              <Badge key={index} name={name}><Icon size={30}/></Badge>
-              ))}
+        <div className="w-[35vw] h-32 flex gap-4 my-6 flex-wrap">
+          <IconList icons={icons} />
         </div>
     </div>
   )

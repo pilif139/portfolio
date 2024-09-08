@@ -3,7 +3,7 @@ import {  Raleway as googleFont} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import BurgerMenu from "@/components/BurgerMenu";
-import Footer from "@/components/Footer";
+import Footer from "@/app/Footer";
 
 const font = googleFont( {subsets: ["latin"]});
 
