@@ -15,7 +15,8 @@ export default function Footer(){
           <motion.div
               initial={{opacity: 0}}
               animate={{opacity: 1}}
-              whileHover={{scale: 1.3}}
+              whileHover={{scale: 1.35}}
+              transition={{duration: 0.4}}
           >
             <a href="https://github.com/pilif139" target="_blank">
               <FaGithub size={40} className="text-white mx-3 cursor-pointer hover:text-gray-300 transition-colors"/>
@@ -24,10 +25,11 @@ export default function Footer(){
           <motion.div
               initial={{opacity: 0}}
               animate={{opacity: 1}}
-              whileHover={{scale: 1.3}}
+              whileHover={{scale: 1.35}}
+              transition={{duration: 0.4}}
           >
             <a href="https://www.linkedin.com/in/filip-kasperski-b80a8b310/" target="_blank">
-              <FaLinkedin size={40} className="text-white mx-3 cursor-pointer hover:text-gray-300 transition-colors"/>
+              <FaLinkedin size={40} className="text-white mx-3 cursor-pointer hover:text-[#0077B5] hover:bg-white transition-colors duration-500 rounded-md"/>
             </a>
           </motion.div>
         </footer>

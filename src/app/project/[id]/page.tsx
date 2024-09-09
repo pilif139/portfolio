@@ -29,7 +29,7 @@ export default function ProjectPage({params} : {params: {id : string}}) {
 
                 {project?.images === undefined && <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />}
                 { project?.images &&
-                  <div className="w-[45vw] h-fit">
+                  <div className="w-[50vw] h-fit">
                   <ImageSlider images={project?.images}/>
                 </div>
                 }

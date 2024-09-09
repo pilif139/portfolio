@@ -57,7 +57,7 @@ export default function ImageSliderWithModal({images}: Props) {
           </motion.div>
         </Modal>
 
-        <div className={"w-[45vw] h-[55vh] flex items-center mx-5"}
+        <div className={"w-[50vw] h-[45vh] flex items-center mx-10"}
         >
           <button
               className="scale-150 bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-3 cursor-pointer focus:outline-none"
@@ -69,7 +69,7 @@ export default function ImageSliderWithModal({images}: Props) {
                 onClick={()=>setShowModal(true)}
                 className="w-full h-full flex items-center justify-center bg-neutral-950 rounded-xl shadow-xl shadow-black overflow-hidden cursor-pointer">
               <motion.img
-                  className="max-w-full max-h-full object-contain rounded-xl"
+                  className="h-fit w-fit rounded-xl"
                   key={page}
                   src={images[page].src}
                   initial={{opacity: 0, scale: 0.5}}

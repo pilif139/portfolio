@@ -6,6 +6,8 @@ import { motion} from "framer-motion";
 import Modal from "@/components/Modal";
 import Link from 'next/link'
 import {popUp} from "@/utils/animations";
+import ExpandedMenu from "@/components/ExpandedMenu";
+import {projects} from "@/assets/projects";
 
 export default function BurgerMenu(){
     const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +15,6 @@ export default function BurgerMenu(){
     const routes = [
         {name: "Home", path: "/"},
         {name: "About Me", path: "/about"},
-        {name: "Projects", path: "/projects"},
     ]
 
     return (
@@ -41,9 +42,18 @@ export default function BurgerMenu(){
                 {routes.map((route, index) => (
                     <Link onClick={()=>setIsOpen(false)} href={route.path} className="hover:text-gray-400 transition-colors" key={index}>{route.name}</Link>
                 ))}
-              </ul>
-            </motion.div>
-          </Modal>
-        </>
-    )
+                <ExpandedMenu name="Projects">
+                  <ul className={"flex flex-col gap-2 mx-8 text-2xl font-semibold text-gray-300 list-disc"}
+                >
+                  {projects && projects.map((project, index) => (
+                      <li><Link href={`/project/${project.id}`} onClick={() => setIsOpen(false)}
+                                key={index}>{project.title}</Link></li>
+                  ))}
+                </ul>
+              </ExpandedMenu>
+            </ul>
+          </motion.div>
+        </Modal>
+</>
+)
 }
