@@ -5,6 +5,7 @@ import {useState} from "react";
 import { motion} from "framer-motion";
 import Modal from "@/components/Modal";
 import Link from 'next/link'
+import {popUp} from "@/utils/animations";
 
 export default function BurgerMenu(){
     const [isOpen, setIsOpen] = useState(false);
@@ -19,16 +20,17 @@ export default function BurgerMenu(){
         <>
           {/*background of the modal*/}
           <motion.div
-              className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125 cursor-pointer"
+              className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
               onClick={()=>setIsOpen(!isOpen)}
               whileHover={{scale: 1.2}}
+              {...popUp}
           >
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
           </motion.div>
           {/*menu*/}
-          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} className="right-0 top-0">
             <motion.div
                 initial={{x: "100%"}}
                 animate={{x: 0}}

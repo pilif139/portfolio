@@ -13,6 +13,7 @@ export default function AboutMe(){
         <motion.button
             onClick={() => setShowAboutMe(true)}
             className="px-6 py-4 bg-red-500 text-xl rounded-xl"
+            whileHover={{scale: 1.1}}
             {...popUp}
             whileTap={{scale: 0.9, borderRadius: "15%"}}
         > Who I am?
