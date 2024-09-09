@@ -12,7 +12,7 @@ export default function Projects() {
   return (
       <div className="w-full flex flex-col items-center bg-neutral-800 gap-5 py-8 px-8">
         <Animated className="text-4xl" animation={popUp}>My Projects</Animated>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
             <Link href={"/project/" + project.id} key={index} className=" hover:scale-95 transition-transform">
               <motion.div className="bg-neutral-700 p-5 rounded-xl shadow-2xl shadow-black hover:bg-neutral-600 transition-colors"

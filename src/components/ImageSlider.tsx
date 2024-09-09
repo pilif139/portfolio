@@ -29,6 +29,9 @@ export default function ImageSliderWithModal({images}: Props) {
                       animate={{opacity: 1, scale: 1}}
                       exit={{opacity: 0, scale: 0.5}}
           >
+            <button onClick={() => setShowModal(false)} className="bg-neutral-900 hover:bg-neutral-800 transition-colors p-4 rounded-xl z-10 absolute top-[-2rem] right-[2rem]">
+              <IoMdClose size={30}/>
+            </button>
             <button
                 className="scale-150 bg-neutral-900 hover:bg-neutral-950 transition-colors rounded-xl p-3 relative z-10 left-16 bg-opacity-50 cursor-pointer focus:outline-none"
                 onClick={() => paginate(-1)}>
@@ -41,8 +44,8 @@ export default function ImageSliderWithModal({images}: Props) {
                     className="max-w-full max-h-full object-contain rounded-xl"
                     key={page}
                     src={images[page].src}
-                    initial={{opacity: 0,x: 500 * direction, scale: 0.5}}
-                    animate={{opacity: 1,x: 0, scale: 1}}
+                    initial={{opacity: 0, x: 500 * direction, scale: 0.5}}
+                    animate={{opacity: 1, x: 0, scale: 1}}
                     exit={{opacity: 0, scale: 0.5}}
                     transition={{duration: 0.5}}
                 />
@@ -57,7 +60,7 @@ export default function ImageSliderWithModal({images}: Props) {
           </motion.div>
         </Modal>
 
-        <div className={"w-[50vw] h-[45vh] flex items-center mx-10"}
+        <div className={"md:w-[50vw] md:h-[45vh] w-screen h-screen flex items-center mx-10"}
         >
           <button
               className="scale-150 bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-3 cursor-pointer focus:outline-none"

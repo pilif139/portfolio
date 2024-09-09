@@ -1,3 +1,5 @@
+"use client";
+
 import {projects} from "@/assets/projects";
 import {notFound} from "next/navigation";
 import FadeOutOverlay from "@/components/FadeOutOverlay";
@@ -22,19 +24,19 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                 <h1 className="text-6xl">{project?.title}</h1>
             </FadeOutOverlay>
 
-            <Animated animation={fadeIn} className="py-6 flex flex-col items-center gap-6 text-xl m-auto w-[95vw]">
-              <h1 className="text-6xl">{project?.title}</h1>
+            <Animated animation={fadeIn} className="py-6 flex flex-col items-center justify-center gap-6 text-xl md:m-auto md:mt-auto mt-24 w-[95vw]">
+              <h1 className="text-6xl text-center">{project?.title}</h1>
               <p>{project?.description}</p>
-              <div className="flex gap-20 justify-center font-semibold py-16">
+              <div className="flex md:flex-row flex-col gap-20 justify-center font-semibold py-16">
 
                 {project?.images === undefined && <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />}
                 { project?.images &&
-                  <div className="w-[50vw] h-fit">
+                  <div className="md:w-[50vw] w-full h-fit md:h-max">
                   <ImageSlider images={project?.images}/>
                 </div>
                 }
 
-                <div className="flex flex-col">
+                <div className="flex flex-col px-24 items-center justify-center text-center h-fit w-fit">
                   {/*About project*/}
                   <p>{project?.longDescription}</p>
                   <div className="flex flex-wrap items-center gap-4 my-4">
