@@ -6,7 +6,7 @@ import FadeOutOverlay from "@/components/FadeOutOverlay";
 import Image from "next/image";
 import IconList from "@/components/IconList";
 import Animated from "@/components/Animated";
-import {fadeIn, popUp} from "@/utils/animations";
+import {fadeIn} from "@/utils/animations";
 import React from "react";
 import {FaGithub} from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";

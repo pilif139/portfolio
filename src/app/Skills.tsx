@@ -1,10 +1,9 @@
 import Animated from "@/components/Animated";
 import {popUp} from "@/utils/animations";
 import React from "react";
-import Badge from "@/components/Badge";
 
 //icons imports
-import {FaCss3, FaGitAlt, FaHtml5, FaJs, FaPython, FaReact} from "react-icons/fa";
+import {FaCss3, FaHtml5, FaJs, FaPython, FaReact} from "react-icons/fa";
 import {SiCsharp, SiMariadb, SiMysql, SiPrisma, SiTypescript} from "react-icons/si";
 import {RiNextjsFill, RiTailwindCssFill} from "react-icons/ri";
 import {FaGolang} from "react-icons/fa6";
@@ -23,14 +22,13 @@ export default function Skills() {
     {Icon: SiMariadb, name: "MariaDB"},
     {Icon: FaGolang, name: "Golang"},
     {Icon: SiCsharp, name: "C#"},
-    {Icon: FaGitAlt, name: "Git"},
     {Icon: FaPython, name: "Python"},
     {Icon: SiPrisma, name: "Prisma ORM"},
 ];
 
   return (
       <div className="flex flex-col items-center">
-        <Animated animation={popUp} className="text-4xl">My Skills</Animated>
+        <Animated animation={popUp} className="text-4xl">My Technologies</Animated>
         <div className="md:w-[35vw] w-full px-5 md:px-0 h-fit flex gap-4 my-6 flex-wrap">
           <IconList icons={icons} />
         </div>

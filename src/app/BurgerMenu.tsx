@@ -42,11 +42,12 @@ export default function BurgerMenu(){
     const routes = [
         {name: "Home", path: "/"},
         {name: "About Me", path: "/about"},
+        {name: "Contact", path: "/contact"}
     ]
 
     return (
         <>
-          {/*background of the modal*/}
+          {/*Burger*/}
           <motion.div
               className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
               onClick={()=>setIsOpen(!isOpen)}
@@ -57,11 +58,11 @@ export default function BurgerMenu(){
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
             <div className="w-10 h-1 bg-white rounded-2xl"></div>
           </motion.div>
-          {/*menu*/}
+          {/*modal that pops up*/}
           <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} className="right-0 top-0">
             <motion.div
                 {...animation}
-                className="p-6 bg-gradient-to-l from-neutral-950 to-neutral-900 h-screen md:w-[20vw] w-screen">
+                className="p-6 bg-gradient-to-l from-neutral-950 to-neutral-900 h-screen  md:w-[25vw] w-screen">
 
               <IoMdClose size={30} onClick={()=>setIsOpen(false)} className="absolute top-5 right-5 cursor-pointer"/>
 
