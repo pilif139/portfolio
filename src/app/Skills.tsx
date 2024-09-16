@@ -29,7 +29,7 @@ export default function Skills() {
   return (
       <div className="flex flex-col items-center">
         <Animated animation={popUp} className="text-4xl">My Technologies</Animated>
-        <div className="md:w-[35vw] w-full px-5 md:px-0 h-fit flex gap-4 my-6 flex-wrap">
+        <div className="w-full px-5 md:px-0 h-fit flex gap-4 my-6 flex-wrap">
           <IconList icons={icons} />
         </div>
     </div>

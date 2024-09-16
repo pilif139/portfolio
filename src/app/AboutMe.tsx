@@ -20,9 +20,9 @@ export default function AboutMe(){
         > Who I am?
         </motion.button>
         {showAboutMe &&
-            <Animated animation={popUp} className="p-4">
-                    <h1 className="text-4xl">Filip Kasperski</h1>
-                <div className="md:w-[35vw] w-full mt-3">
+            <Animated animation={popUp} className="p-4 w-full">
+                <h1 className="text-4xl">Filip Kasperski</h1>
+                <div className="w-full mt-3">
                     <p className="text-lg">I am a 17-year-old programmer based in <span
                         className="text-red-400">Poznań</span>,
                         currently studying programming at <span className="text-red-400">Zespół Szkół Komunikacji im. Hipolita Cegielskiego</span> in

@@ -7,7 +7,6 @@ import Link from "next/link";
 import {motion} from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import Badge from "@/components/Badge";
 
 export default function Projects() {
   return (
