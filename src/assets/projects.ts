@@ -28,6 +28,8 @@ import {SiJavascript, SiJsonwebtokens, SiPostgresql, SiPrisma, SiReact, SiSqlite
 import {RiNextjsFill, RiTailwindCssFill} from "react-icons/ri";
 import {FaDocker} from "react-icons/fa";
 import {FaGolang} from "react-icons/fa6";
+import { TbApi } from "react-icons/tb";
+import { VscTerminalCmd } from "react-icons/vsc";
 
 export const projects = [
   {
@@ -84,6 +86,7 @@ export const projects = [
    longDescription: "This project was my first Go application. I learned standard library, how to use go modules, how to work with files and directories, how to create simple shell commands. Before that I had no experience with Go, so i had to learn basics of go from Go By Example course and go documentation. ",
     technologies: [
       {Icon: FaGolang, name: "Go"},
+      {Icon: VscTerminalCmd , name: "Shell"},
     ],
     githubLink: "https://github.com/pilif139/go-shell",
     image : p4i1,
@@ -98,6 +101,7 @@ export const projects = [
         {Icon: FaGolang, name: "Go"},
         {Icon: SiSqlite, name: "SQLite"},
         {Icon : SiJsonwebtokens , name: "JWT"},
+        {Icon: TbApi, name: "REST API"}
     ],
     githubLink: "https://github.com/pilif139/go-fiber-to-do",
     image : p5i1,

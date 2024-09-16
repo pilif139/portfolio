@@ -12,8 +12,6 @@ export default function About(){
 
         <Animated animation={fadeIn} className="flex flex-col items-center gap-4 m-auto text-xl md:w-[45vw] w-full p-7 md:mt-0 mt-24">
           <h1 className="text-5xl my-2">Filip Kasperski</h1>
-        <Animated animation={fadeIn} className="flex flex-col items-center gap-4 p-16 text-xl w-[45vw]">
-          <h1 className="text-5xl">Filip Kasperski</h1>
           <p className="text-2xl font-bold w-full">Overiew</p>
           <p className="text-xl w-full">I am a 17-year-old programmer based in <span
               className="text-red-400">Poznań</span>,
