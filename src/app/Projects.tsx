@@ -9,8 +9,9 @@ import Image from "next/image";
 import React from "react";
 
 export default function Projects() {
+ 
   return (
-      <div className="w-full flex flex-col items-center bg-neutral-800 gap-5 py-8 px-8">
+      <div className="w-full flex flex-col items-center bg-neutral-800 gap-5 py-8 px-8"  id="projects">
         <Animated className="text-4xl" animation={popUp}>My Projects</Animated>
         <div className="grid md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
@@ -18,6 +19,7 @@ export default function Projects() {
               <motion.div className="bg-neutral-700 p-5 rounded-xl shadow-2xl shadow-black hover:bg-neutral-600 transition-colors flex flex-col gap-4"
                           initial={{opacity: 0, scale: 0.9}}
                           whileInView={{opacity: 1, scale: 1}}
+                          viewport={{ once: true }}
               >
                 <div className="flex justify-between items-center bg-neutral-600 p-3 rounded-xl">
                   <p className="text-2xl mb-3">{project.title}</p>

@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import {  Raleway as googleFont} from "next/font/google";
 import "./globals.css";
 import React from "react";
-import BurgerMenu from "@/app/BurgerMenu";
 import Footer from "@/app/Footer";
-import NavigationButtons from "@/app/Navigation";
+import Header from "./Header";
 
 const font = googleFont( {subsets: ["latin"]});
 
@@ -21,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} flex flex-col items-center font-bold bg-neutral-900 text-white min-h-screen`}>
-      <NavigationButtons/>
-      <BurgerMenu />
+      <Header/>
       {children}
       <Footer/>
       </body>

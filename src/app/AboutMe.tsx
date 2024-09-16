@@ -2,15 +2,17 @@
 
 import Animated from "@/components/Animated";
 import {popUp} from "@/utils/animations";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AboutMe(){
   const [showAboutMe, setShowAboutMe] = useState(false);
 
+
   return (
-      <div className="w-full flex flex-col items-center p-5">
+      <div className="w-full flex flex-col items-center p-5" id="about">
         <motion.button
             onClick={() => setShowAboutMe(true)}
             className="px-6 py-4 bg-red-500 text-xl rounded-xl"

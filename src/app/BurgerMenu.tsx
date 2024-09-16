@@ -53,7 +53,7 @@ export default function BurgerMenu() {
     <>
       {/*Burger*/}
       <motion.div
-        className="flex flex-col items-center justify-center gap-2 absolute top-0 right-0 m-5 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
+        className="flex flex-col items-center justify-center gap-2 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.2 }}
         {...popUp}

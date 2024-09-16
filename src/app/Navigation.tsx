@@ -7,7 +7,7 @@ import {popUp} from "@/utils/animations";
 
 export default function NavigationButtons() {
   return (
-    <motion.div className="flex gap-4 absolute top-3 left-3"
+    <motion.div className="flex gap-4"
                 {...popUp}
                 whileHover={{scale: 1.1}}
     >
