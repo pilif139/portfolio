@@ -16,13 +16,13 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
             <Link href={"/project/" + project.id} key={index} className=" hover:scale-95 transition-transform before:absolute">
-              <motion.div className="bg-neutral-700 p-5 rounded-xl shadow-2xl shadow-black hover:bg-neutral-600 transition-colors flex flex-col gap-4"
+              <motion.div className="bg-neutral-900 p-5 rounded-xl shadow-2xl shadow-black hover:bg-gradient-to-t hover:from-neutral-700 hover:to-neutral-900 transition-colors flex flex-col gap-4"
                           initial={{opacity: 0, scale: 0.9}}
                           whileInView={{opacity: 1, scale: 1}}
                           viewport={{ once: true }}
               >
-                <div className="flex justify-between items-center bg-neutral-600 p-3 rounded-xl">
-                  <p className="text-2xl mb-3">{project.title}</p>
+                <div className="flex justify-between items-center bg-neutral-950 p-3 rounded-xl shadow-inner shadow-black">
+                  <p className="text-3xl mb-3">{project.title}</p>
                   <div className="flex gap-4 mb-auto mr-2">
                     {project.technologies.map(({Icon}, index) => (
                       <Icon size={40} key={index}/>

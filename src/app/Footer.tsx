@@ -5,6 +5,7 @@ import {FaGithub, FaLinkedin} from "react-icons/fa";
 import {fadeIn} from "@/utils/animations";
 import React from "react";
 import Animated from "@/components/Animated";
+import { TbFileCv } from "react-icons/tb";
 
 export default function Footer(){
     return (
@@ -30,6 +31,16 @@ export default function Footer(){
           >
             <a href="https://www.linkedin.com/in/filip-kasperski-b80a8b310/" target="_blank">
               <FaLinkedin size={40} className="text-white mx-3 cursor-pointer hover:text-[#0077B5] hover:bg-white transition-colors duration-500 rounded-md"/>
+            </a>
+          </motion.div>
+          <motion.div
+              initial={{opacity: 0}}
+              animate={{opacity: 1}}
+              whileHover={{scale: 1.35}}
+              transition={{duration: 0.2}}
+          >
+            <a href="/CV.pdf" target="_blank" download="cv">
+              <TbFileCv size={40} className="text-white mx-3 cursor-pointer hover:text-gray-300 transition-colors"/>
             </a>
           </motion.div>
         </footer>
