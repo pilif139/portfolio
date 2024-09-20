@@ -18,8 +18,8 @@ export default function Skills() {
 
   return (
       <div className="flex flex-col items-center" id="tools">
-        <Animated animation={popUp} className="text-4xl">Tools I&apos;m using</Animated>
-        <div className="w-full h-max flex gap-4 my-6 mb-12 rounded-xl flex-wrap">
+        <Animated animation={popUp} className="text-4xl">Tools</Animated>
+        <div className="w-full h-max flex justify-center gap-4 my-6 mb-12 rounded-xl flex-wrap">
           <IconList icons={icons}/>
         </div>
       </div>

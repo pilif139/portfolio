@@ -7,9 +7,9 @@ type ModalContextType = {
     setComponent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setClassName: React.Dispatch<React.SetStateAction<string>>;
-}
+} | undefined;
 
-const ModalContext = React.createContext({setComponent: () => {}, setIsOpen: () => {}, setClassName: ()=>{}} as ModalContextType);
+const ModalContext = React.createContext<ModalContextType>(undefined);
 
 type ModalContextProviderProps = {
     children: React.ReactNode;

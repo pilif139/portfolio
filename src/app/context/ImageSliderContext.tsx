@@ -6,9 +6,9 @@ type SliderContextType = {
   page: number;
   direction: number;
   paginate: (newDirection: number) => void;
-}
+} | undefined;
 
-const SliderContext = createContext({page: 0, direction: 0, paginate: ()=>{}} as SliderContextType);
+const SliderContext = createContext<SliderContextType>(undefined);
 
 export default function SliderContextProvider({children}: {children: React.ReactNode}){
   const [[page, direction], setPage] = useState([0, 0]);

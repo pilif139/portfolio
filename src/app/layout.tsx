@@ -5,7 +5,6 @@ import React from "react";
 import Footer from "@/app/Footer";
 import Header from "./Header";
 import ModalContextProvider from "@/app/context/ModalContext";
-import SliderContextProvider from "./context/ImageSliderContext";
 
 const font = googleFont( {subsets: ["latin"]});
 
@@ -22,13 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} flex flex-col items-center font-bold bg-neutral-900 text-white min-h-screen`}>
-      <SliderContextProvider>
         <ModalContextProvider>
           <Header/>
+        </ModalContextProvider>
           {children}
           <Footer/>
-        </ModalContextProvider>
-      </SliderContextProvider>
       </body>
     </html>
   );

@@ -74,7 +74,7 @@ type ModalProps = {
 }
 
 const ModalSlider = ({images} : ModalProps) =>{
-  const {setIsOpen} = useModal();
+  const {setIsOpen, setComponent} = useModal();
 
   const { page, direction, paginate } = useSlider();
 

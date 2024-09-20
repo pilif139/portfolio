@@ -1,5 +1,3 @@
-"use client";
-
 import {projects} from "@/assets/projects";
 import {notFound} from "next/navigation";
 import FadeOutOverlay from "@/components/FadeOutOverlay";
@@ -11,6 +9,19 @@ import React from "react";
 import {FaGithub} from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import ImageSlider from "@/components/ImageSlider";
+import {Metadata} from "next";
+
+export async function generateMetadata({params}: {params: {id: string}}) : Promise<Metadata> {
+    const project = projects.find(project => project.id === Number(params.id));
+    if(!project){
+        notFound();
+    }
+
+    return {
+        title: "Filip Kasperski - "+project?.title,
+        description: project?.description
+    }
+}
 
 export default function ProjectPage({params} : {params: {id : string}}) {
     const project = projects.find(project => project.id === Number(params.id));
