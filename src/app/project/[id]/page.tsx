@@ -36,12 +36,14 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                 </div>
                 }
 
-                <div className="flex flex-col px-24 items-center justify-center text-center h-fit w-fit">
+                <div className="flex flex-col px-24 items-center justify-center text-justify h-fit w-fit">
+
                   {/*About project*/}
                   <p>{project?.longDescription}</p>
                   <div className="flex flex-wrap items-center gap-4 my-4">
                     <IconList icons={project?.technologies} infoAtBottom={true}/>
                   </div>
+
                   {/*Links*/}
                   <div className="flex gap-4">
                     {project?.githubLink &&
@@ -49,6 +51,7 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                        className="btn flex gap-4 items-center bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-4 w-fit"><FaGithub
                         size={30}/>Source Code</a>
                     }
+                    
                     {project?.link &&
                     <a href={project?.link} target="_blank"
                        className="btn flex gap-4 items-center bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-4 w-fit"><TbWorldWww

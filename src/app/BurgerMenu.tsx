@@ -58,15 +58,14 @@ export default function BurgerMenu() {
         whileHover={{ scale: 1.2 }}
         {...popUp}
       >
-        <div className="w-10 h-1 bg-white rounded-2xl"></div>
-        <div className="w-10 h-1 bg-white rounded-2xl"></div>
-        <div className="w-10 h-1 bg-white rounded-2xl"></div>
+        <BurgerIcon/>
       </motion.div>
+      
       {/*modal that pops up*/}
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="right-0 top-0"
+        className="right-0"
       >
         <motion.div
           {...animation}
@@ -110,3 +109,5 @@ export default function BurgerMenu() {
     </>
   );
 }
+
+const BurgerIcon = () => Array.from({ length: 3 }).map((_, index) => ( <div key={index} className="w-10 h-1 bg-white rounded-xl"></div> ));
