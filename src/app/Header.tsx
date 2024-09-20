@@ -1,3 +1,5 @@
+"use client";
+
 import { fadeIn } from '@/utils/animations';
 import BurgerMenu from './BurgerMenu';
 import NaviagtionButtons from './Navigation';

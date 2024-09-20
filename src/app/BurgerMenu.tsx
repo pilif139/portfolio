@@ -1,17 +1,45 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Modal from "@/components/Modal";
 import Link from "next/link";
 import { popUp } from "@/utils/animations";
 import ExpandedMenu from "@/components/ExpandedMenu";
 import { projects } from "@/assets/projects";
 import { IoMdClose } from "react-icons/io";
+import {useModal} from "@/app/context/ModalContext";
 
 export default function BurgerMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { setComponent, setIsOpen, setClassName } = useModal();
+
+  const handleModal = () => {
+        setComponent(<Menu/>);
+        setIsOpen(true);
+        setClassName("right-0");
+  };
+
+  return (
+      <>
+        {/*Burger*/}
+        <motion.div
+            className="flex flex-col items-center justify-center gap-2 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
+            onClick={handleModal}
+            whileHover={{ scale: 1.2 }}
+            {...popUp}
+        >
+          <BurgerIcon/>
+        </motion.div>
+      </>
+  );
+}
+
+const Menu = ()=>{
+
+  const routes = [
+    { name: "Home", path: "/" },
+    { name: "About Me", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   type animationType = {
     initial: any;
@@ -43,71 +71,51 @@ export default function BurgerMenu() {
     }
   }, []);
 
-  const routes = [
-    { name: "Home", path: "/" },
-    { name: "About Me", path: "/about" },
-    { name: "Contact", path: "/contact" },
-  ];
+  const {setIsOpen} = useModal();
 
   return (
-    <>
-      {/*Burger*/}
       <motion.div
-        className="flex flex-col items-center justify-center gap-2 scale-125 cursor-pointer [&>*]:hover:bg-gray-300 transition-colors"
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.2 }}
-        {...popUp}
-      >
-        <BurgerIcon/>
-      </motion.div>
-      
-      {/*modal that pops up*/}
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        className="right-0"
-      >
-        <motion.div
           {...animation}
           className="p-6 bg-gradient-to-l from-neutral-950 to-neutral-900 h-screen  md:w-[25vw] w-screen"
-        >
-          <IoMdClose
+      >
+        <IoMdClose
             size={30}
             onClick={() => setIsOpen(false)}
             className="absolute top-5 right-5 cursor-pointer"
-          />
+        />
 
-          <ul className="flex flex-col text-3xl gap-3 w-full">
-            {routes.map((route, index) => (
+        <ul className="flex flex-col text-3xl gap-3 w-full">
+          {routes.map((route, index) => (
               <Link
-                onClick={() => setIsOpen(false)}
-                href={route.path}
-                className="hover:text-gray-400 transition-colors"
-                key={index}
+                  onClick={() => setIsOpen(false)}
+                  href={route.path}
+                  className="hover:text-gray-400 transition-colors"
+                  key={index}
               >
                 {route.name}
               </Link>
-            ))}
+          ))}
 
-            <ExpandedMenu name="Projects">
-              {projects &&
+          <ExpandedMenu name="Projects">
+            {projects &&
                 projects.map((project, index) => (
-                  <li key={index}>
-                    <Link
-                      href={`/project/${project.id}`}
-                      onClick={() => setIsOpen(false)}
-                      className="hover:text-gray-100 transition-colors"
-                    >
-                      {project.title}
-                    </Link>
-                  </li>
+                    <li key={index}>
+                      <Link
+                          href={`/project/${project.id}`}
+                          onClick={() => setIsOpen(false)}
+                          className="hover:text-gray-100 transition-colors"
+                      >
+                        {project.title}
+                      </Link>
+                    </li>
                 ))}
-            </ExpandedMenu>
-          </ul>
-        </motion.div>
-      </Modal>
-    </>
-  );
+          </ExpandedMenu>
+        </ul>
+      </motion.div>
+  )
 }
 
-const BurgerIcon = () => Array.from({ length: 3 }).map((_, index) => ( <div key={index} className="w-10 h-1 bg-white rounded-xl"></div> ));
+const BurgerIcon = () => Array.from({length: 3})
+    .map((_, index) =>
+        (<div key={index} className="w-10 h-1 bg-white rounded-xl"></div>)
+    );

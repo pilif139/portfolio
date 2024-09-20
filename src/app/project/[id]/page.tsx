@@ -32,8 +32,8 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                 {project?.images === undefined && <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />}
                 { project?.images &&
                   <div className="md:w-[50vw] w-full h-fit md:h-max">
-                  <ImageSlider images={project?.images}/>
-                </div>
+                      <ImageSlider images={project?.images}/>
+                  </div>
                 }
 
                 <div className="flex flex-col px-24 items-center justify-center text-justify h-fit w-fit">
