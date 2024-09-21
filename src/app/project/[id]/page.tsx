@@ -1,5 +1,3 @@
-"use client";
-
 import {projects} from "@/assets/projects";
 import {notFound} from "next/navigation";
 import FadeOutOverlay from "@/components/FadeOutOverlay";
@@ -11,6 +9,19 @@ import React from "react";
 import {FaGithub} from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import ImageSlider from "@/components/ImageSlider";
+import {Metadata} from "next";
+
+export async function generateMetadata({params}: {params: {id: string}}) : Promise<Metadata> {
+    const project = projects.find(project => project.id === Number(params.id));
+    if(!project){
+        notFound();
+    }
+
+    return {
+        title: "Filip Kasperski - "+project?.title,
+        description: project?.description
+    }
+}
 
 export default function ProjectPage({params} : {params: {id : string}}) {
     const project = projects.find(project => project.id === Number(params.id));
@@ -32,16 +43,18 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                 {project?.images === undefined && <Image src={project?.image} alt={project?.title} className="w-[45vw] h-fit rounded-xl" />}
                 { project?.images &&
                   <div className="md:w-[50vw] w-full h-fit md:h-max">
-                  <ImageSlider images={project?.images}/>
-                </div>
+                      <ImageSlider images={project?.images}/>
+                  </div>
                 }
 
-                <div className="flex flex-col px-24 items-center justify-center text-center h-fit w-fit">
+                <div className="flex flex-col px-24 items-center justify-center text-justify h-fit w-fit">
+
                   {/*About project*/}
                   <p>{project?.longDescription}</p>
                   <div className="flex flex-wrap items-center gap-4 my-4">
                     <IconList icons={project?.technologies} infoAtBottom={true}/>
                   </div>
+
                   {/*Links*/}
                   <div className="flex gap-4">
                     {project?.githubLink &&
@@ -49,6 +62,7 @@ export default function ProjectPage({params} : {params: {id : string}}) {
                        className="btn flex gap-4 items-center bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-4 w-fit"><FaGithub
                         size={30}/>Source Code</a>
                     }
+                    
                     {project?.link &&
                     <a href={project?.link} target="_blank"
                        className="btn flex gap-4 items-center bg-neutral-950 hover:bg-neutral-800 transition-colors rounded-xl p-4 w-fit"><TbWorldWww
