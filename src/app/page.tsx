@@ -19,9 +19,9 @@ const menuElements = [
 export default function Home() {
 
   return (
-        <main className=" flex flex-col items-center py-8 gap-4 min-h-screen w-full">
+        <main className=" flex flex-col items-center py-8 gap-4 min-h-screen w-screen">
           <NavigationMenu elements={menuElements}/>
-          <div className="md:w-[60vw] lg:w-[50vw] 2xl:w-[40vw] w-full">
+          <div className="md:w-[60vw] lg:w-[50vw] 2xl:w-[40vw] sm:w-full w-screen">
             <Animated className="text-5xl mt-24 md:mt-0 text-center" animation={popUp}>Welcome to my portfolio!</Animated>
             <AboutMe/>
             <Skills/>

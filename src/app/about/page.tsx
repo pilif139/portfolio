@@ -10,7 +10,7 @@ export default function About(){
           <h1 className="text-6xl">About Me</h1>
         </FadeOutOverlay>
 
-        <Animated animation={fadeIn} className="flex flex-col items-center gap-4 m-auto text-xl md:w-[45vw] w-full p-7 md:mt-0 mt-24">
+        <Animated animation={fadeIn} className="flex flex-col items-center gap-4 m-auto text-xl md:w-[45vw] sm:w-screen p-7 md:mt-0 mt-24">
           <h1 className="text-5xl my-2">Filip Kasperski</h1>
           <p className="text-2xl font-bold w-full">Overiew</p>
           <p className="text-xl w-full">I am a 17-year-old programmer based in <span

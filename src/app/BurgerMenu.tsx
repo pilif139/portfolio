@@ -9,11 +9,70 @@ import { projects } from "@/assets/projects";
 import { IoMdClose } from "react-icons/io";
 import {useModal} from "@/app/context/ModalContext";
 
-export default function BurgerMenu() {
+type MenuProps = {
+  routes: {
+    name: string,
+    path: string,
+  }[]
+}
+
+type animationType = {
+  initial: any;
+  animate: any;
+  exit?: any;
+  transition?: any;
+};
+
+
+export default function BurgerMenu({routes} : MenuProps) {
+  const [animation, setAnimation] = useState<animationType>({
+    initial: { x: "100%" },
+    animate: { x: 0 },
+    exit: { x: "100%" },
+    transition: { duration: 0.25, type: "spring", stiffness: 150, damping: 25 },
+  });
+
+  useEffect(() => {
+    const handleResize = () =>{
+      if (window.innerWidth < 768) {
+        setAnimation({
+          initial: { y: "-100%" },
+          animate: { y: 0 },
+          exit: { y: "-100%" },
+          transition: {
+            duration: 0.25,
+            type: "spring",
+            stiffness: 150,
+            damping: 25,
+          },
+        });
+      } else {
+        setAnimation({
+          initial: { x: "100%" },
+          animate: { x: 0 },
+          exit: { x: "100%" },
+          transition: {
+            duration: 0.25,
+            type: "spring",
+            stiffness: 150,
+            damping: 25,
+          },
+        });
+      }
+    }
+
+    //initial render sets values
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [window.innerWidth]);
+
   const { setComponent, setIsOpen, setClassName } = useModal();
 
   const handleModal = () => {
-        setComponent(<Menu/>);
+        setComponent(<Menu routes={routes} animation={animation}/>);
         setIsOpen(true);
         setClassName("right-0");
   };
@@ -33,50 +92,22 @@ export default function BurgerMenu() {
   );
 }
 
-const Menu = ()=>{
+type ModalProps = {
+  routes: {
+    name: string,
+    path: string,
+  }[],
+  animation : animationType,
+}
 
-  const routes = [
-    { name: "Home", path: "/" },
-    { name: "About Me", path: "/about" },
-    { name: "Contact", path: "/contact" },
-  ];
-
-  type animationType = {
-    initial: any;
-    animate: any;
-    exit?: any;
-    transition?: any;
-  };
-
-  const [animation, setAnimation] = useState<animationType>({
-    initial: { x: "100%" },
-    animate: { x: 0 },
-    exit: { x: "100%" },
-    transition: { duration: 0.25, type: "spring", stiffness: 150, damping: 25 },
-  });
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setAnimation({
-        initial: { y: "-100%" },
-        animate: { y: 0 },
-        exit: { y: "-100%" },
-        transition: {
-          duration: 0.25,
-          type: "spring",
-          stiffness: 150,
-          damping: 25,
-        },
-      });
-    }
-  }, []);
+function Menu({ routes, animation}: ModalProps) {
 
   const {setIsOpen} = useModal();
 
   return (
       <motion.div
           {...animation}
-          className="p-6 bg-gradient-to-l from-neutral-950 to-neutral-900 h-screen  md:w-[25vw] w-screen"
+          className="p-6 bg-gradient-to-l from-neutral-950 to-neutral-900 h-screen md:w-[25vw] w-screen"
       >
         <IoMdClose
             size={30}
