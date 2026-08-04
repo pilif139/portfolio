@@ -1,21 +1,26 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contact">
   <h1 class="mb-4 text-xl font-bold">contact</h1>
   <ul class="space-y-2 text-md">
-    <li>
-      email: <a href="mailto:you@example.com" class="underline"
-        >you@example.com</a>
+    <li class="flex items-center gap-1">
+      <Icon name="mdi:email" class="text-xl" />
+      email:
+      <a href="mailto:you@example.com" class="underline">you@example.com</a>
     </li>
-    <li>
-      github: <a href="https://github.com/yourname" class="underline"
-        >@yourname</a>
+    <li class="flex items-center gap-1">
+      <Icon name="mdi:github" class="text-xl" />
+      github:
+      <a href="https://github.com/yourname" class="underline">@yourname</a>
     </li>
-    <li>
+    <li class="flex items-center gap-1">
+      <Icon name="mdi:linkedin" class="text-xl" />
       linkedin: <a href="https://linkedin.com/in/yourname" class="underline"
-        >yourname</a>
+        >yourname</a
+      >
     </li>
   </ul>
 </Layout>

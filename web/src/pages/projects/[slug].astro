@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -22,7 +23,9 @@ const { Content } = await render(project);
   <article class="max-w-2xl">
     <h1 class="mb-1 text-2xl font-bold">{project.data.title}</h1>
     <p class="mb-3 text-md text-muted">{project.data.tech.join(" · ")}</p>
-    <div class="prose-sm space-y-3 text-md leading-relaxed text-secondary [&_h1]:font-bold [&_h2]:font-bold [&_h3]:font-bold">
+    <div
+      class="prose-sm space-y-3 text-md leading-relaxed text-secondary [&_h1]:font-bold [&_h2]:font-bold [&_h3]:font-bold"
+    >
       <Content />
     </div>
     {
@@ -30,8 +33,14 @@ const { Content } = await render(project);
         <ul class="mt-6 flex gap-4 text-md">
           {project.data.links.map((link) => (
             <li>
-              <a href={link.href} class="underline">
+              <a href={link.href} class="underline flex items-center gap-1">
                 {link.label}
+                {link.label.toLocaleLowerCase() === "github" && (
+                  <Icon name="mdi:github" class="text-xl" />
+                )}
+                {link.label.toLocaleLowerCase() === "website" && (
+                  <Icon name="mdi:web" class="text-xl" />
+                )}
               </a>
             </li>
           ))}
