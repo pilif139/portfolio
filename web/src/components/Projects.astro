@@ -1,24 +1,27 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-const projects = (await getCollection('projects')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title))
-
+const projects = (await getCollection("projects")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
 ---
 
 <section>
-	<h2 class="mb-2 text-lg font-bold">&gt; projects</h2>
-	<ul class="space-y-3">
-		{
-			projects.map((project) => (
-				<li>
-					<a href={`/projects/${project.id}`} class="text-sm font-semibold underline">
-						{project.data.title}
-					</a>
-					<p class="text-sm text-secondary">{project.data.description}</p>
-					<p class="mt-1 text-xs text-muted">{project.data.tech.join(' · ')}</p>
-				</li>
-			))
-		}
-	</ul>
+  <h2 class="mb-2 text-xl font-bold">&gt; projects</h2>
+  <ul class="space-y-3">
+    {
+      projects.map((project) => (
+        <li>
+          <a
+            href={`/projects/${project.id}`}
+            class="text-md font-semibold underline"
+          >
+            {project.data.title}
+          </a>
+          <p class="text-md text-secondary">{project.data.description}</p>
+          <p class="mt-1 text-sm text-muted">{project.data.tech.join(" · ")}</p>
+        </li>
+      ))
+    }
+  </ul>
 </section>

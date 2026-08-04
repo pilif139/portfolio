@@ -1,34 +1,36 @@
 ---
 interface Props {
-	title?: string;
+  title?: string;
 }
 
-const { title = 'pilif139' } = Astro.props;
+const { title = "pilif139" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="min-h-screen bg-background font-mono text-foreground antialiased">
-		<header class="bg-primary px-3 py-2">
-			<nav class="mx-auto flex max-w-3xl items-baseline gap-4">
-				<a href="/">home</a>
-				<a href="/contact">contact</a>
-			</nav>
-		</header>
-		<main class="mx-auto max-w-3xl px-3 py-6">
-			<slot />
-		</main>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="min-h-screen bg-background font-mono text-foreground antialiased"
+  >
+    <header class="bg-primary px-3 py-2">
+      <nav class="mx-auto flex max-w-3xl items-baseline gap-4">
+        <a href="/" class="hover:text-muted hover:underline">home</a>
+        <a href="/contact" class="hover:text-muted hover:underline">contact</a>
+      </nav>
+    </header>
+    <main class="mx-auto max-w-3xl px-3 py-6">
+      <slot />
+    </main>
+  </body>
 </html>
 
 <style is:global>
-	@import "../styles/global.css";
+  @import "../styles/global.css";
 </style>

@@ -1,14 +1,17 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Layout from "@/layouts/Layout.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects');
-	return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
 }
 
 interface Props {
-	project: CollectionEntry<'projects'>
+  project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props satisfies Props;
@@ -16,22 +19,24 @@ const { Content } = await render(project);
 ---
 
 <Layout title={project.data.title}>
-	<article class="max-w-2xl">
-		<h1 class="mb-1 text-xl font-bold">{project.data.title}</h1>
-		<p class="mb-3 text-sm text-muted">{project.data.tech.join(' · ')}</p>
-		<div class="prose-sm space-y-3 text-sm leading-relaxed text-secondary">
-			<Content />
-		</div>
-		{
-			project.data.links && (
-				<ul class="mt-6 flex gap-4 text-sm">
-					{project.data.links.map((link) => (
-						<li>
-							<a href={link.href} class="underline">{link.label}</a>
-						</li>
-					))}
-				</ul>
-			)
-		}
-	</article>
+  <article class="max-w-2xl">
+    <h1 class="mb-1 text-2xl font-bold">{project.data.title}</h1>
+    <p class="mb-3 text-md text-muted">{project.data.tech.join(" · ")}</p>
+    <div class="prose-sm space-y-3 text-md leading-relaxed text-secondary [&_h1]:font-bold [&_h2]:font-bold [&_h3]:font-bold">
+      <Content />
+    </div>
+    {
+      project.data.links && (
+        <ul class="mt-6 flex gap-4 text-md">
+          {project.data.links.map((link) => (
+            <li>
+              <a href={link.href} class="underline">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </article>
 </Layout>
