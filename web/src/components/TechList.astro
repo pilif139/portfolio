@@ -10,20 +10,17 @@ interface Props {
 
 const { tech, className } = Astro.props;
 
-const hasIcon = (t: string) =>
-  t.toLowerCase().split(".").join("").split(" ").join("") in
-  icons.devicon.icons;
+// icon name normalization, mostly the "." and whitespace characters are removed. This is used to look up the icon name in the devicon icons object. Not always a perfect match, but good enough for our purposes.
+const iconName = (t: string) => t.toLowerCase().replace(/[.\s]/g, "");
+const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
 ---
 
 <div class={`tech-list flex flex-wrap items-center gap-1 ${className}`}>
   {
     tech.map((t, index) => (
-      <span class="tech-item inline-flex items-center gap-0.5">
+      <span class="tech-item inline-flex items-center gap-2">
         {hasIcon(t) && (
-          <Icon
-            name={`devicon:${t.toLowerCase().split(".").join("").split(" ").join("")}`}
-            class="text-lg shrink-0"
-          />
+          <Icon name={`devicon:${iconName(t)}`} class="shrink-0" size="18" />
         )}
         {t}
         {index < tech.length - 1 && " · "}
@@ -32,7 +29,6 @@ const hasIcon = (t: string) =>
   }
   <button
     class="tech-more underline hover:bg-primary hover:text-secondary cursor-pointer"
-    style="display: none"
     type="button"
   >
     +0 more</button
@@ -40,30 +36,54 @@ const hasIcon = (t: string) =>
 </div>
 
 <script>
+  import stagger from "@/components/ui/stagger";
+
   // line detection via offsetTop, no ResizeObserver; window resize only.
   for (const list of document.querySelectorAll(".tech-list")) {
     const moreBtn = list.querySelector<HTMLButtonElement>(".tech-more")!;
     const items = [...list.querySelectorAll<HTMLElement>(".tech-item")];
-    console.log("items", items);
     let expanded = false;
 
     const update = () => {
       if (expanded || items.length < 2) return;
+
+      // reset all items so the hidden ones can be detected and displayed again
+      // if the user resizes the windows to be bigger than before
+      items.forEach((el) => (el.style.display = "flex"));
+
       const firstTop = items[0].offsetTop;
-      let hidden = 0;
-      for (const el of items) {
-        const wrapped = el.offsetTop !== firstTop;
-        el.style.display = wrapped ? "none" : "";
-        if (wrapped) hidden++;
+      const wrapped = items.map((el) => el.offsetTop !== firstTop);
+
+      let hiddenCount = 0;
+      items.forEach((el, i) => {
+        el.style.display = wrapped[i] ? "none" : "flex";
+        if (wrapped[i]) hiddenCount++;
+      });
+
+      // check if moreBtn is displayed on new line
+      if (moreBtn.offsetTop !== firstTop) {
+        const lastVisibleIndex = wrapped.lastIndexOf(false);
+        items[lastVisibleIndex].style.display = "none";
+        hiddenCount++;
       }
-      moreBtn.style.display = hidden ? "" : "none";
-      moreBtn.textContent = ` +${hidden} more`;
+
+      if (hiddenCount === 0) {
+        moreBtn.style.display = "none";
+        return;
+      }
+
+      moreBtn.textContent = ` +${hiddenCount} more`;
     };
 
     moreBtn.addEventListener("click", () => {
       expanded = true;
-      items.forEach((el) => (el.style.display = ""));
       moreBtn.style.display = "none";
+
+      // reveal the hidden items one by one, typewriting each label
+      const hidden = items.filter((el) => el.style.display === "none");
+      stagger(hidden.length, 100, (i) => {
+       hidden[i].style.display = 'flex';
+      });
     });
 
     update();

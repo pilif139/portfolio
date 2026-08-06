@@ -1,13 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Typewriter from "@/components/Typewriter.astro";
+import Link from "@/components/ui/Link";
 ---
 
-<Layout title="500 Server Error">
+<Layout title="500 server error">
   <Typewriter>
     <h1 class="mb-2 text-2xl font-bold">&gt; 500: internal server error</h1>
   </Typewriter>
   <p class="text-md">
-    something went wrong. <a href="/" class="underline hover:bg-primary hover:text-secondary">go home</a>
+    something went wrong. <Link href="/">go home</Link>
   </p>
 </Layout>

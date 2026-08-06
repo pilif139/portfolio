@@ -1,9 +1,11 @@
 ---
+import Link from "@/components/ui/Link";
+
 interface Props {
   title?: string;
 }
 
-const { title = "pilif139" } = Astro.props;
+const { title } = Astro.props;
 const navbarLinks = [
   { label: "home", href: "/" },
   { label: "contact", href: "/contact" },
@@ -18,18 +20,21 @@ const navbarLinks = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>pilif139 {title != null ? `- ${title}` : ""}</title>
   </head>
   <body
-    class="min-h-screen bg-background font-[monaco] text-foreground antialiased"
+    class="min-h-screen bg-background font-mono text-foreground antialiased"
   >
     <header class="bg-primary px-3 py-2">
       <nav class="mx-auto flex max-w-3xl items-baseline gap-4">
         {
           navbarLinks.map((link) => (
-            <a href={link.href} class="hover:text-muted hover:underline">
+            <Link
+              href={link.href}
+              className="hover:text-muted hover:underline no-underline"
+            >
               {link.label}
-            </a>
+            </Link>
           ))
         }
       </nav>

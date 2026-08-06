@@ -1,18 +1,11 @@
----
-const speed = 90;
----
+<div class="typewriter-box">
+  <slot />
+</div>
 
-<slot />
+<script>
+  import animateTypewriter from "@/components/ui/animateTypewriter";
 
-<script define:vars={{ speed }}>
-  const el = document.currentScript.previousElementSibling;
-  const text = el.textContent;
-  el.textContent = "";
-  el.setAttribute("aria-label", text);
-  let i = 0;
-  const tick = () => {
-    el.textContent = text.slice(0, i);
-    if (i++ < text.length) setTimeout(tick, speed);
-  };
-  tick();
+  document.querySelectorAll<HTMLElement>(".typewriter-box > *").forEach((el) => {
+    animateTypewriter(el, el.textContent ?? "", 90);
+  });
 </script>
