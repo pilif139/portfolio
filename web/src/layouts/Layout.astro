@@ -4,6 +4,10 @@ interface Props {
 }
 
 const { title = "pilif139" } = Astro.props;
+const navbarLinks = [
+  { label: "home", href: "/" },
+  { label: "contact", href: "/contact" },
+];
 ---
 
 <!doctype html>
@@ -17,15 +21,20 @@ const { title = "pilif139" } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="min-h-screen bg-background font-[Lilex_Nerd_Font_Mono] text-foreground antialiased"
+    class="min-h-screen bg-background font-[monaco] text-foreground antialiased"
   >
     <header class="bg-primary px-3 py-2">
       <nav class="mx-auto flex max-w-3xl items-baseline gap-4">
-        <a href="/" class="hover:text-muted hover:underline">home</a>
-        <a href="/contact" class="hover:text-muted hover:underline">contact</a>
+        {
+          navbarLinks.map((link) => (
+            <a href={link.href} class="hover:text-muted hover:underline">
+              {link.label}
+            </a>
+          ))
+        }
       </nav>
     </header>
-    <main class="mx-auto max-w-3xl px-3 py-6">
+    <main class="mx-auto max-w-3xl px-3 py-6 pb-60">
       <slot />
     </main>
   </body>

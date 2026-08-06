@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import Typewriter from "./Typewriter.astro";
+import TechList from "./TechList.astro";
 
 const projects = (await getCollection("projects")).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
@@ -7,19 +9,22 @@ const projects = (await getCollection("projects")).sort((a, b) =>
 ---
 
 <section>
-  <h2 class="mb-2 text-xl font-bold">&gt; projects</h2>
+  <Typewriter><h2 class="mb-2 text-xl font-bold">&gt; projects</h2></Typewriter>
   <ul class="space-y-3">
     {
       projects.map((project) => (
         <li>
           <a
             href={`/projects/${project.id}`}
-            class="text-md font-semibold underline"
+            class="text-md font-semibold underline hover:bg-primary hover:text-secondary"
           >
             {project.data.title}
           </a>
           <p class="text-md text-secondary">{project.data.description}</p>
-          <p class="mt-1 text-sm text-muted">{project.data.tech.join(" · ")}</p>
+          <TechList
+            tech={project.data.tech}
+            className="mt-1 text-sm text-muted"
+          />
         </li>
       ))
     }

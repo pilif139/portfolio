@@ -12,15 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@iconify-json/devicon": "^1.2.62",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.1.6",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.3.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "cookie": "1.1.1"
-    }
   }
 }

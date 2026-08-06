@@ -1,26 +1,37 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import Typewriter from "@/components/Typewriter.astro";
+
+const linkClass = {
+  li: "flex items-center gap-1",
+  a: "underline hover:bg-primary hover:text-secondary",
+};
 ---
 
 <Layout title="Contact">
-  <h1 class="mb-4 text-xl font-bold">contact</h1>
+  <Typewriter><h1 class="mb-2 text-2xl font-bold">&gt; contact</h1></Typewriter>
   <ul class="space-y-2 text-md">
-    <li class="flex items-center gap-1">
+    <li class={linkClass.li}>
       <Icon name="mdi:email" class="text-xl" />
-      email:
-      <a href="mailto:you@example.com" class="underline">you@example.com</a>
+      e-mail:
+      <a href="mailto:filip.kasperski@proton.me" class={linkClass.a}>
+        filip.kasperski@proton.me
+      </a>
     </li>
-    <li class="flex items-center gap-1">
+    <li class={linkClass.li}>
       <Icon name="mdi:github" class="text-xl" />
       github:
-      <a href="https://github.com/yourname" class="underline">@yourname</a>
+      <a href="https://github.com/pilif139" class={linkClass.a}> pilif139 </a>
     </li>
-    <li class="flex items-center gap-1">
+    <li class={linkClass.li}>
       <Icon name="mdi:linkedin" class="text-xl" />
-      linkedin: <a href="https://linkedin.com/in/yourname" class="underline"
-        >yourname</a
+      linkedin: <a
+        href="https://www.linkedin.com/in/filip-kasperski-b80a8b310/"
+        class={linkClass.a}
       >
+        Filip Kasperski
+      </a>
     </li>
   </ul>
 </Layout>

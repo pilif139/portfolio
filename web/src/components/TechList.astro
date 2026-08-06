@@ -1,0 +1,72 @@
+---
+import { Icon } from "astro-icon/components";
+// @ts-ignore virtual module
+import icons from "virtual:astro-icon";
+
+interface Props {
+  tech: string[];
+  className?: string;
+}
+
+const { tech, className } = Astro.props;
+
+const hasIcon = (t: string) =>
+  t.toLowerCase().split(".").join("").split(" ").join("") in
+  icons.devicon.icons;
+---
+
+<div class={`tech-list flex flex-wrap items-center gap-1 ${className}`}>
+  {
+    tech.map((t, index) => (
+      <span class="tech-item inline-flex items-center gap-0.5">
+        {hasIcon(t) && (
+          <Icon
+            name={`devicon:${t.toLowerCase().split(".").join("").split(" ").join("")}`}
+            class="text-lg shrink-0"
+          />
+        )}
+        {t}
+        {index < tech.length - 1 && " · "}
+      </span>
+    ))
+  }
+  <button
+    class="tech-more underline hover:bg-primary hover:text-secondary cursor-pointer"
+    style="display: none"
+    type="button"
+  >
+    +0 more</button
+  >
+</div>
+
+<script>
+  // line detection via offsetTop, no ResizeObserver; window resize only.
+  for (const list of document.querySelectorAll(".tech-list")) {
+    const moreBtn = list.querySelector<HTMLButtonElement>(".tech-more")!;
+    const items = [...list.querySelectorAll<HTMLElement>(".tech-item")];
+    console.log("items", items);
+    let expanded = false;
+
+    const update = () => {
+      if (expanded || items.length < 2) return;
+      const firstTop = items[0].offsetTop;
+      let hidden = 0;
+      for (const el of items) {
+        const wrapped = el.offsetTop !== firstTop;
+        el.style.display = wrapped ? "none" : "";
+        if (wrapped) hidden++;
+      }
+      moreBtn.style.display = hidden ? "" : "none";
+      moreBtn.textContent = ` +${hidden} more`;
+    };
+
+    moreBtn.addEventListener("click", () => {
+      expanded = true;
+      items.forEach((el) => (el.style.display = ""));
+      moreBtn.style.display = "none";
+    });
+
+    update();
+    window.addEventListener("resize", update);
+  }
+</script>

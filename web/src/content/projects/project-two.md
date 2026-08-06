@@ -1,7 +1,7 @@
 ---
 title: Project Two
 description: Another quick summary for the homepage project list.
-tech: [React, Node, Postgres]
+tech: [React, Node.js, PostgreSQL]
 ---
 
 ## About this project

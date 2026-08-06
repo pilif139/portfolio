@@ -1,0 +1,18 @@
+---
+const speed = 90;
+---
+
+<slot />
+
+<script define:vars={{ speed }}>
+  const el = document.currentScript.previousElementSibling;
+  const text = el.textContent;
+  el.textContent = "";
+  el.setAttribute("aria-label", text);
+  let i = 0;
+  const tick = () => {
+    el.textContent = text.slice(0, i);
+    if (i++ < text.length) setTimeout(tick, speed);
+  };
+  tick();
+</script>
