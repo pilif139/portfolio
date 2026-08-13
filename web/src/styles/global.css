@@ -56,6 +56,14 @@ body {
   50% { opacity: 0.85; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .tech-list {
+    animation: none;
+    transition: none;
+  }
+}
+
 @keyframes crt-flicker {
   0%, 100% { opacity: 0.96; }
   48% { opacity: 0.96; }

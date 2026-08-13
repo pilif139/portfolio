@@ -46,6 +46,7 @@ const navbarLinks = [
 </html>
 
 <script is:inline>
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const stars = [];
   const layer = document.createElement("div");
   layer.className = "starfield";
@@ -63,11 +64,13 @@ const navbarLinks = [
     stars.push(s);
   }
 
-  setInterval(() => {
-    const s = stars[Math.floor(Math.random() * stars.length)];
-    s.style.left = `${Math.random() * 100}%`;
-    s.style.top = `${Math.random() * 100}%`;
-  }, 800);
+  if (!reduced) {
+    setInterval(() => {
+      const s = stars[Math.floor(Math.random() * stars.length)];
+      s.style.left = `${Math.random() * 100}%`;
+      s.style.top = `${Math.random() * 100}%`;
+    }, 800);
+  }
 </script>
 
 <style is:global>
