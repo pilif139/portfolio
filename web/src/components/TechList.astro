@@ -10,25 +10,23 @@ interface Props {
 
 const { tech, className } = Astro.props;
 
-// icon name normalization, mostly the "." and whitespace characters are removed. This is used to look up the icon name in the devicon icons object. Not always a perfect match, but good enough for our purposes.
 const iconName = (t: string) => t.toLowerCase().replace(/[.\s]/g, "");
 const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
 ---
 
-<div class={`tech-list flex flex-wrap items-center gap-1 ${className}`}>
+<div class={`tech-list relative flex flex-wrap items-center gap-1 ${className}`}>
   {
-    tech.map((t, index) => (
+    tech.map((t) => (
       <span class="tech-item inline-flex items-center gap-2">
         {hasIcon(t) && (
           <Icon name={`devicon:${iconName(t)}`} class="shrink-0" size="18" />
         )}
         {t}
-        {index < tech.length - 1 && " · "}
       </span>
     ))
   }
   <button
-    class="tech-more underline hover:bg-primary hover:text-secondary cursor-pointer"
+    class="tech-more underline hover:bg-primary hover:text-accent cursor-pointer"
     type="button"
   >
     +0 more</button
@@ -61,7 +59,7 @@ const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
       });
 
       // check if moreBtn is displayed on new line
-      if (moreBtn.offsetTop !== firstTop) {
+      if (moreBtn.offsetTop > firstTop + items[0].offsetHeight) {
         const lastVisibleIndex = wrapped.lastIndexOf(false);
         items[lastVisibleIndex].style.display = "none";
         hiddenCount++;

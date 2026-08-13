@@ -4,9 +4,8 @@ import Typewriter from "./Typewriter.astro";
 import TechList from "./TechList.astro";
 import Link from "./ui/Link";
 
-const projects = (await getCollection("projects")).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
-);
+const projects = (await getCollection("projects"))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <section>

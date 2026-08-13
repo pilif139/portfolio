@@ -31,7 +31,7 @@ const navbarLinks = [
           navbarLinks.map((link) => (
             <Link
               href={link.href}
-              className="hover:text-muted hover:underline no-underline"
+              className="hover:underline no-underline"
             >
               {link.label}
             </Link>
@@ -44,6 +44,31 @@ const navbarLinks = [
     </main>
   </body>
 </html>
+
+<script is:inline>
+  const stars = [];
+  const layer = document.createElement("div");
+  layer.className = "starfield";
+  document.body.appendChild(layer);
+
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement("span");
+    s.className = "star";
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.top = `${Math.random() * 100}%`;
+    s.style.width = s.style.height = `${Math.random() < 0.7 ? 1 : 2}px`;
+    s.style.animationDuration = `${5 + Math.random() * 3}s`;
+    s.style.animationDelay = `${-Math.random() * 5}s`;
+    layer.appendChild(s);
+    stars.push(s);
+  }
+
+  setInterval(() => {
+    const s = stars[Math.floor(Math.random() * stars.length)];
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.top = `${Math.random() * 100}%`;
+  }, 800);
+</script>
 
 <style is:global>
   @import "../styles/global.css";

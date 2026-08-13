@@ -1,10 +1,65 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #503c3c;
-  --color-primary: #3e3232;
-  --color-foreground: #a87c7c;
-  --color-secondary: #9c7979;
-  --color-muted: #988080;
-  --color-border: #dcdcd0;
+  --color-background: #040914;
+  --color-primary: rgba(12, 25, 44, 0.6);
+  --color-holo: rgba(56, 189, 248, 0.25);
+  --color-foreground: #e0f2fe;
+  --color-secondary: #e0f2fe;
+  --color-heading: #60a5fa;
+  --color-accent: #22d3ee;
+  --color-titles: #38bdf8;
+  --color-muted: #94a3b8;
+  --color-primary-inverted: #f5f5ec;
+}
+
+h1, h2, h3 {
+  color: var(--color-titles);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.tech-item {
+  background:
+    linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.35) 50%),
+    #102450;
+  background-size: 100% 4px, auto;
+  color: #7dd3fc;
+  padding: 0.1rem 0.4rem;
+}
+
+.tech-list {
+  text-shadow: 0 0 4px rgba(56, 189, 248, 0.6), 0 0 10px rgba(56, 189, 248, 0.3);
+  animation: crt-flicker 3s infinite;
+}
+
+body {
+  isolation: isolate;
+}
+
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: #7dd3fc;
+  border-radius: 50%;
+  transition: left 3s ease, top 3s ease;
+  animation: starfield-twinkle 7s ease-in-out infinite;
+}
+
+@keyframes starfield-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 0.96; }
+  48% { opacity: 0.96; }
+  50% { opacity: 0.85; }
+  52% { opacity: 0.98; }
+  80% { opacity: 0.92; }
 }
