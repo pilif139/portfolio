@@ -10,4 +10,5 @@ import react from '@astrojs/react';
 export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   integrations: [icon(), react()],
+  site: 'https://pilif139.github.io/portfolio',
 });

@@ -14,6 +14,18 @@ const projects = defineCollection({
   schema: ProjectSchema
 });
 
+const CertificationSchema = z.object({
+  title: z.string(),
+  skills: z.array(z.string()),
+  date: z.date() // TODO: check what real world certificates are made of
+})
+
+const certificates = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/conent/certificates'}),
+  schema: CertificationSchema
+})
+
 export const collections = {
   'projects': projects,
+  'certificates': certificates
 };
