@@ -15,7 +15,7 @@ const projects = (await getCollection("projects"))
       projects.map((project) => (
         <li>
           <Link
-            href={`/projects/${project.id}`}
+            href={`/portfolio/projects/${project.id}`}
             className="text-md font-semibold"
           >
             {project.data.title}

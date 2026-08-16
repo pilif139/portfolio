@@ -6,7 +6,7 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 export default function Link({ href, children, className, ...props }: LinkProps) {
     return (
         <a
-            href={href}
+            href={`${href}`}
             className={cn("text-heading underline hover:bg-primary hover:text-accent", className)}
             {...props}
         >

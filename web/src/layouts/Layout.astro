@@ -7,8 +7,8 @@ interface Props {
 
 const { title } = Astro.props;
 const navbarLinks = [
-  { label: "home", href: "/" },
-  { label: "contact", href: "/contact" },
+  { label: "home", href: "/portfolio" },
+  { label: "contact", href: "/portfolio/contact" },
 ];
 ---
 
@@ -18,7 +18,7 @@ const navbarLinks = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/portfolio/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>pilif139 {title != null ? `- ${title}` : ""}</title>
   </head>
