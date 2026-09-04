@@ -21,11 +21,13 @@ interface Props {
 
 const { project } = Astro.props satisfies Props;
 const { Content } = await render(project);
+
+const rotateDeg = Math.random() * 6 - 3;
 ---
 
 <Layout title={project.data.title.toLowerCase()}>
   <article class="max-w-2xl">
-    <MotionBox client:load style={{ backgroundColor: COLORS.yellow }} className="inline-block px-3 py-1 my-2">
+    <MotionBox client:load style={{ backgroundColor: COLORS.yellow, rotate: `${rotateDeg}deg` }} className="inline-block px-3 py-1 my-2">
       <h1 class="text-2xl font-bold text-black">{project.data.title}</h1>
     </MotionBox>
     <TechList tech={project.data.tech} className="mb-3 text-base text-muted" />
