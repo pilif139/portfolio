@@ -1,6 +1,8 @@
 ---
 import Link from "@/components/ui/Link";
-import headerBorder from "../assets/header-border.gif?url";
+import MotionBox from "@/components/ui/MotionBox";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { COLORS } from "@/lib/colors";
 
 interface Props {
   title?: string;
@@ -8,8 +10,8 @@ interface Props {
 
 const { title } = Astro.props;
 const navbarLinks = [
-  { label: "home", href: "/portfolio" },
-  { label: "contact", href: "/portfolio/contact" },
+  { label: "home", href: "/portfolio", color: COLORS.pink },
+  { label: "contact", href: "/portfolio/contact", color: COLORS.teal },
 ];
 ---
 
@@ -22,6 +24,10 @@ const navbarLinks = [
     <link rel="icon" href="/portfolio/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>pilif139 {title != null ? `- ${title}` : ""}</title>
+    <script is:inline>
+      const theme = localStorage.getItem("theme") ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      if (theme === "dark") document.documentElement.classList.add("dark");
+    </script>
   </head>
   <body
     class="min-h-screen bg-background font-[Arial] text-foreground antialiased"
@@ -30,24 +36,23 @@ const navbarLinks = [
       <header class="bg-primary px-3 py-2">
         <nav class="mx-auto flex max-w-3xl text-xl font-medium items-baseline gap-4">
           {
-            navbarLinks.map((link) => (
-              <Link
-                href={link.href}
-                className="hover:underline no-underline"
-              >
-                {link.label}
-              </Link>
+            navbarLinks.map((link, i) => (
+              <MotionBox client:load delay={i * 0.1} shake className="inline-block">
+                <Link
+                  href={link.href}
+                  className="no-underline px-2 py-0.5 my-0.5 text-white inline-block"
+                  style={{ backgroundColor: link.color }}
+                >
+                  {link.label}
+                </Link>
+              </MotionBox>
             ))
           }
+          <ThemeToggle />
         </nav>
       </header>
-      <div
-        class="header-border"
-        aria-hidden="true"
-        style={`background-image: url(${headerBorder})`}
-      />
     </div>
-    <main class="mx-auto max-w-3xl px-3 py-6 pb-60">
+    <main class="mx-auto max-w-3xl py-6 pb-60">
       <slot />
     </main>
   </body>

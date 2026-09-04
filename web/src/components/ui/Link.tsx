@@ -3,11 +3,12 @@ import { cn } from "@/lib/cn";
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
-export default function Link({ href, children, className, ...props }: LinkProps) {
+export default function Link({ href, children, className, style, ...props }: LinkProps) {
     return (
         <a
             href={`${href}`}
-            className={cn("text-heading underline hover:bg-primary hover:text-accent", className)}
+            className={cn("text-heading underline hover:opacity-80", className)}
+            style={style}
             {...props}
         >
             {children}

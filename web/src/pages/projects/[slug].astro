@@ -3,8 +3,9 @@ import Layout from "@/layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import TechList from "@/components/TechList.astro";
-import Typewriter from "@/components/Typewriter.astro";
+import MotionBox from "@/components/ui/MotionBox";
 import Link from "@/components/ui/Link";
+import { COLORS } from "@/lib/colors";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -24,9 +25,9 @@ const { Content } = await render(project);
 
 <Layout title={project.data.title.toLowerCase()}>
   <article class="max-w-2xl">
-    <Typewriter>
-        <h1 class="mb-2 text-2xl font-bold">{project.data.title}</h1>
-    </Typewriter>
+    <MotionBox client:load style={{ backgroundColor: COLORS.yellow }} className="inline-block px-3 py-1 my-2">
+      <h1 class="text-2xl font-bold text-black">{project.data.title}</h1>
+    </MotionBox>
     <TechList tech={project.data.tech} className="mb-3 text-base text-muted" />
     <div
       class="prose-sm space-y-3 text-base leading-relaxed text-secondary [&_h1]:font-bold [&_h1]:text-xl [&_h2]:text-lg [&_h2]:font-bold [&_h3]:font-bold [&_li]:list-disc [&_li]:ml-4"
@@ -36,11 +37,17 @@ const { Content } = await render(project);
     {
       project.data.links && (
         <article class="mt-6 flex flex-col gap-2">
-          <h2 class="text-xl font-bold">Links:</h2>
+          <MotionBox client:load style={{ backgroundColor: COLORS.green }} className="inline-block px-3 py-1 my-2 w-min">
+            <h2 class="text-xl font-bold text-black">Links:</h2>
+          </MotionBox>
           <ul class="text-base">
-            {project.data.links.map((link) => (
+            {project.data.links.map((link, i) => (
               <li class="flex">
-                <Link href={link.href} className="flex items-center gap-1">
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-1 px-2 py-0.5 my-0.5"
+                  style={{ backgroundColor: i % 2 === 0 ? COLORS.red : COLORS.teal }}
+                >
                   {link.label}
                   {link.label.toLowerCase() === "github" && (
                     <Icon name="mdi:github" class="text-xl" />

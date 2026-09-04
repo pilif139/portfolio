@@ -1,22 +1,26 @@
 ---
 import { getCollection } from "astro:content";
-import Typewriter from "./Typewriter.astro";
+import MotionBox from "@/components/ui/MotionBox";
 import TechList from "./TechList.astro";
 import Link from "./ui/Link";
+import { COLORS, randomColor } from "@/lib/colors";
 
 const projects = (await getCollection("projects"))
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <section>
-  <Typewriter><h2 class="mb-2 text-xl font-bold">Projects</h2></Typewriter>
+  <MotionBox client:load style={{ backgroundColor: COLORS.red, rotate: "-1.2deg" }} className="inline-block px-2 py-1 my-2">
+    <h2 class="text-xl font-bold text-white">Projects</h2>
+  </MotionBox>
   <ul class="space-y-3">
     {
       projects.map((project) => (
         <li>
           <Link
             href={`/portfolio/projects/${project.id}`}
-            className="text-base font-semibold"
+            className="text-base font-semibold px-2 py-1 my-0.5"
+            style={{ backgroundColor: randomColor() }}
           >
             {project.data.title}
           </Link>

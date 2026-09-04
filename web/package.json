@@ -22,6 +22,7 @@
     "astro": "^7.1.6",
     "astro-icon": "^1.1.5",
     "cookie": "^2.0.1",
+    "framer-motion": "^13.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwind-merge": "^3.6.0",

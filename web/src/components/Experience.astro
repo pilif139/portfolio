@@ -1,11 +1,12 @@
 ---
-import Typewriter from "./Typewriter.astro";
+import MotionBox from "@/components/ui/MotionBox";
+import { COLORS } from "@/lib/colors";
 ---
 
 <section>
-  <Typewriter
-    ><h2 class="mb-2 text-xl font-bold">Experience</h2></Typewriter
-  >
+  <MotionBox client:load style={{ backgroundColor: COLORS.yellow, rotate: "0.5deg" }} className="inline-block px-2 py-1 my-2">
+    <h2 class="text-xl font-bold text-black">Experience</h2>
+  </MotionBox>
   <ul class="space-y-3 text-base">
     <li>
       <span class="text-heading font-semibold text-lg"

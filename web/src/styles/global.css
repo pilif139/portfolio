@@ -1,50 +1,60 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-background: #120a0a;
-  --color-primary: #060303;
-  --color-holo: rgba(153, 27, 27, 0.25);
-  --color-foreground: #e5d3d0;
-  --color-secondary: #c9b3af;
-  --color-heading: #dc2626;
-  --color-accent: #ff3b30;
-  --color-titles: #b91c1c;
-  --color-muted: #8a6f6b;
-  --color-primary-inverted: #f5f5ec;
+  --color-background: #fafafa;
+  --color-primary: #ffffff;
+  --color-holo: rgba(200, 200, 200, 0.25);
+  --color-foreground: #1a1a1a;
+  --color-secondary: #4a4a4a;
+  --color-heading: #1a1a1a;
+  --color-accent: #555555;
+  --color-titles: #1a1a1a;
+  --color-muted: #888888;
+  --color-primary-inverted: #1a1a1a;
 }
 
-h1, h2, h3 {
-  color: var(--color-titles);
+.dark {
+  color-scheme: dark;
+  --color-background: #1a1a1a;
+  --color-primary: #2a2a2a;
+  --color-holo: rgba(255, 255, 255, 0.08);
+  --color-foreground: #fafafa;
+  --color-secondary: #d4d4d4;
+  --color-heading: #ffffff;
+  --color-accent: #aaaaaa;
+  --color-titles: #ffffff;
+  --color-muted: #999999;
+  --color-primary-inverted: #ffffff;
 }
 
-.tech-list {
-  /*text-shadow: 0 0 4px rgba(220, 38, 38, 0.6), 0 0 10px rgba(220, 38, 38, 0.3);*/
-  /*animation: crt-flicker 3s infinite;*/
+@layer base {
+  h1, h2, h3 {
+    color: var(--color-foreground);
+  }
 }
 
 html {
   font-size: 1.25rem;
 }
 
-.header-border {
-  height: 24px;
-  background-repeat: repeat-x;
-  background-size: 532px 24px;
-  pointer-events: none;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .star,
-  .tech-list {
-    animation: none;
-    transition: none;
+::view-transition-new(root) {
+  z-index: 1;
+  animation: vt-reveal 450ms ease-in-out forwards;
+}
+
+@keyframes vt-reveal {
+  from {
+    clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 50%));
   }
 }
-
-/*@keyframes crt-flicker {
-  0%, 100% { opacity: 0.96; }
-  48% { opacity: 0.96; }
-  50% { opacity: 0.85; }
-  52% { opacity: 0.98; }
-  80% { opacity: 0.92; }
-}*/
