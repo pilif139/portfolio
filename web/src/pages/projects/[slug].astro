@@ -25,11 +25,11 @@ const { Content } = await render(project);
 <Layout title={project.data.title.toLowerCase()}>
   <article class="max-w-2xl">
     <Typewriter>
-      <h1 class="mb-2 text-2xl font-bold">&gt; {project.data.title}</h1>
+        <h1 class="mb-2 text-2xl font-bold">{project.data.title}</h1>
     </Typewriter>
-    <TechList tech={project.data.tech} className="mb-3 text-md text-muted" />
+    <TechList tech={project.data.tech} className="mb-3 text-base text-muted" />
     <div
-      class="prose-sm space-y-3 text-md leading-relaxed text-secondary [&_h1]:font-bold [&_h1]:text-xl [&_h2]:text-lg [&_h2]:font-bold [&_h3]:font-bold [&_li]:list-disc [&_li]:ml-4"
+      class="prose-sm space-y-3 text-base leading-relaxed text-secondary [&_h1]:font-bold [&_h1]:text-xl [&_h2]:text-lg [&_h2]:font-bold [&_h3]:font-bold [&_li]:list-disc [&_li]:ml-4"
     >
       <Content />
     </div>
@@ -37,7 +37,7 @@ const { Content } = await render(project);
       project.data.links && (
         <article class="mt-6 flex flex-col gap-2">
           <h2 class="text-xl font-bold">Links:</h2>
-          <ul class="text-md">
+          <ul class="text-base">
             {project.data.links.map((link) => (
               <li class="flex">
                 <Link href={link.href} className="flex items-center gap-1">

@@ -1,5 +1,6 @@
 ---
 import Link from "@/components/ui/Link";
+import headerBorder from "../assets/header-border.gif?url";
 
 interface Props {
   title?: string;
@@ -23,55 +24,34 @@ const navbarLinks = [
     <title>pilif139 {title != null ? `- ${title}` : ""}</title>
   </head>
   <body
-    class="min-h-screen bg-background font-mono text-foreground antialiased"
+    class="min-h-screen bg-background font-[Arial] text-foreground antialiased"
   >
-    <header class="bg-primary px-3 py-2">
-      <nav class="mx-auto flex max-w-3xl items-baseline gap-4">
-        {
-          navbarLinks.map((link) => (
-            <Link
-              href={link.href}
-              className="hover:underline no-underline"
-            >
-              {link.label}
-            </Link>
-          ))
-        }
-      </nav>
-    </header>
+    <div class="flex flex-col">
+      <header class="bg-primary px-3 py-2">
+        <nav class="mx-auto flex max-w-3xl text-xl font-medium items-baseline gap-4">
+          {
+            navbarLinks.map((link) => (
+              <Link
+                href={link.href}
+                className="hover:underline no-underline"
+              >
+                {link.label}
+              </Link>
+            ))
+          }
+        </nav>
+      </header>
+      <div
+        class="header-border"
+        aria-hidden="true"
+        style={`background-image: url(${headerBorder})`}
+      />
+    </div>
     <main class="mx-auto max-w-3xl px-3 py-6 pb-60">
       <slot />
     </main>
   </body>
 </html>
-
-<script is:inline>
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const stars = [];
-  const layer = document.createElement("div");
-  layer.className = "starfield";
-  document.body.appendChild(layer);
-
-  for (let i = 0; i < 70; i++) {
-    const s = document.createElement("span");
-    s.className = "star";
-    s.style.left = `${Math.random() * 100}%`;
-    s.style.top = `${Math.random() * 100}%`;
-    s.style.width = s.style.height = `${Math.random() < 0.7 ? 1 : 2}px`;
-    s.style.animationDuration = `${5 + Math.random() * 3}s`;
-    s.style.animationDelay = `${-Math.random() * 5}s`;
-    layer.appendChild(s);
-    stars.push(s);
-  }
-
-  if (!reduced) {
-    setInterval(() => {
-      const s = stars[Math.floor(Math.random() * stars.length)];
-      s.style.left = `${Math.random() * 100}%`;
-      s.style.top = `${Math.random() * 100}%`;
-    }, 800);
-  }
-</script>
 
 <style is:global>
   @import "../styles/global.css";

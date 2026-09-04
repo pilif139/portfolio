@@ -17,7 +17,7 @@ const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
 <div class={`tech-list relative flex flex-wrap items-center gap-1 ${className}`}>
   {
     tech.map((t) => (
-      <span class="tech-item inline-flex items-center gap-2">
+      <span class="tech-item text-accent p-1 inline-flex items-center gap-2">
         {hasIcon(t) && (
           <Icon name={`devicon:${iconName(t)}`} class="shrink-0" size="18" aria-label={`${t} icon`}/>
         )}

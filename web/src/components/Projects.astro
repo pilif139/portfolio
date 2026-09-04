@@ -9,18 +9,18 @@ const projects = (await getCollection("projects"))
 ---
 
 <section>
-  <Typewriter><h2 class="mb-2 text-xl font-bold">&gt; projects</h2></Typewriter>
+  <Typewriter><h2 class="mb-2 text-xl font-bold">Projects</h2></Typewriter>
   <ul class="space-y-3">
     {
       projects.map((project) => (
         <li>
           <Link
             href={`/portfolio/projects/${project.id}`}
-            className="text-md font-semibold"
+            className="text-base font-semibold"
           >
             {project.data.title}
           </Link>
-          <p class="text-md text-secondary">{project.data.description}</p>
+          <p class="text-base text-secondary">{project.data.description}</p>
           <TechList
             tech={project.data.tech}
             className="mt-1 text-sm text-muted"
