@@ -10,7 +10,7 @@ interface Props {
 
 const { title } = Astro.props;
 const navbarLinks = [
-  { label: "home", href: "/portfolio", color: COLORS.pink },
+  { label: "home", href: "/portfolio", color: COLORS.gold },
   { label: "contact", href: "/portfolio/contact", color: COLORS.teal },
 ];
 ---
@@ -30,14 +30,14 @@ const navbarLinks = [
     </script>
   </head>
   <body
-    class="min-h-screen bg-background font-[Arial] text-foreground antialiased"
+    class="min-h-screen bg-background font-[Manrope] text-foreground antialiased"
   >
     <div class="flex flex-col">
       <header class="bg-primary px-3 py-2">
-        <nav class="mx-auto flex max-w-3xl text-xl font-medium items-baseline gap-4">
+        <nav class="mx-auto flex max-w-3xl text-xl font-bold items-baseline gap-4">
           {
             navbarLinks.map((link, i) => (
-              <MotionBox client:load delay={i * 0.1} shake className="inline-block">
+              <MotionBox client:load delay={i * 0.1} className="inline-block active:scale-90" animation={["startFromTop","shake"]}>
                 <Link
                   href={link.href}
                   className="no-underline px-2 py-0.5 my-0.5 text-white inline-block"
@@ -48,11 +48,13 @@ const navbarLinks = [
               </MotionBox>
             ))
           }
-          <ThemeToggle />
+          <MotionBox client:load animation="startFromTop" className="ml-auto hover:scale-125 transition-transform duration-150 active:scale-90">
+            <ThemeToggle />
+          </MotionBox>
         </nav>
       </header>
     </div>
-    <main class="mx-auto max-w-3xl py-6 pb-60">
+    <main class="mx-auto max-w-3xl py-6 px-3 lg:px-0 pb-60">
       <slot />
     </main>
   </body>
