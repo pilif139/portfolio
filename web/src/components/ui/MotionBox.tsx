@@ -20,8 +20,13 @@ export const ANIMATIONS = {
     initial: { scale: 0.97 },
     whileInView: { scale: 1 },
   },
-  shake: {
+  shakeHover: {
     whileHover: { rotate: [0, -5, 0, 5, 0], transition: { duration: 0.4, ease: (t: number) => Math.round(t) } },
+  },
+  startFromLeft: {
+    initial: { x: -80, scale: 0.5 },
+    animate: { x: 0, scale: 1 },
+    transition: { duration: 0.4 },
   },
 } satisfies Record<string, Animation>;
 

@@ -3,11 +3,13 @@ import MotionBox from "@/components/ui/MotionBox";
 import { COLORS } from "@/lib/colors";
 ---
 
+<MotionBox client:load>
 <section>
-  <MotionBox client:load style={{ backgroundColor: COLORS.pink, rotate: "1.2deg" }} className="inline-block px-2 py-1 my-2">
+  <div style={{ backgroundColor: COLORS.pink, rotate: "1.2deg" }} class="inline-block px-2 py-1 my-2">
     <h2 class="text-xl font-bold text-white">Certifications</h2>
-  </MotionBox>
+  </div>
   <ul class="list-inside list-disc text-base text-secondary">
     <li>Planning to do: AWS Solutions Architect - Associate</li>
   </ul>
 </section>
+</MotionBox>

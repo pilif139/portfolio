@@ -3,6 +3,6 @@ import MotionBox from "@/components/ui/MotionBox";
 import { COLORS } from "@/lib/colors";
 ---
 
-<MotionBox client:load style={{ backgroundColor: COLORS.pink }} className="inline-block px-3 py-1 my-2">
+<MotionBox client:load style={{ backgroundColor: COLORS.pink }} animation={["startFromLeft", "scaleUp", "fadeIn"]} className="inline-block px-3 py-1 my-2">
   <h1 class="text-3xl font-bold text-white">Hi!</h1>
 </MotionBox>
