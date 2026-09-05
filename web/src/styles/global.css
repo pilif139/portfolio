@@ -1,73 +1,94 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-background: #040914;
-  --color-primary: rgba(12, 25, 44, 0.6);
-  --color-holo: rgba(56, 189, 248, 0.25);
-  --color-foreground: #e0f2fe;
-  --color-secondary: #e0f2fe;
-  --color-heading: #60a5fa;
-  --color-accent: #22d3ee;
-  --color-titles: #38bdf8;
-  --color-muted: #94a3b8;
-  --color-primary-inverted: #f5f5ec;
+  --color-background: #fafafa;
+  --color-primary: #ffffff;
+  --color-holo: rgba(200, 200, 200, 0.25);
+  --color-foreground: #1a1a1a;
+  --color-secondary: #4a4a4a;
+  --color-heading: #1a1a1a;
+  --color-accent: #555555;
+  --color-titles: #1a1a1a;
+  --color-muted: #888888;
+  --color-primary-inverted: #1a1a1a;
 }
 
-h1, h2, h3 {
-  color: var(--color-titles);
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+.dark {
+  color-scheme: dark;
+  --color-background: #1a1a1a;
+  --color-primary: #2a2a2a;
+  --color-holo: rgba(255, 255, 255, 0.08);
+  --color-foreground: #fafafa;
+  --color-secondary: #d4d4d4;
+  --color-heading: #ffffff;
+  --color-accent: #aaaaaa;
+  --color-titles: #ffffff;
+  --color-muted: #999999;
+  --color-primary-inverted: #ffffff;
 }
 
-.tech-item {
-  background:
-    linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.35) 50%),
-    #102450;
-  background-size: 100% 4px, auto;
-  color: #7dd3fc;
-  padding: 0.1rem 0.4rem;
-}
-
-.tech-list {
-  text-shadow: 0 0 4px rgba(56, 189, 248, 0.6), 0 0 10px rgba(56, 189, 248, 0.3);
-  animation: crt-flicker 3s infinite;
-}
-
-body {
-  isolation: isolate;
-}
-
-.starfield {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.star {
-  position: absolute;
-  background: #7dd3fc;
-  border-radius: 50%;
-  transition: left 3s ease, top 3s ease;
-  animation: starfield-twinkle 7s ease-in-out infinite;
-}
-
-@keyframes starfield-twinkle {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 0.85; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .star,
-  .tech-list {
-    animation: none;
-    transition: none;
+@layer base {
+  h1, h2, h3 {
+    color: var(--color-foreground);
   }
 }
 
-@keyframes crt-flicker {
-  0%, 100% { opacity: 0.96; }
-  48% { opacity: 0.96; }
-  50% { opacity: 0.85; }
-  52% { opacity: 0.98; }
-  80% { opacity: 0.92; }
+html {
+  font-size: 1.25rem;
+}
+
+:root {
+  --expo-in: linear(
+    0 0%, 0.0085 31.26%, 0.0167 40.94%,
+    0.0289 48.86%, 0.0471 55.92%,
+    0.0717 61.99%, 0.1038 67.32%,
+    0.1443 72.07%, 0.1989 76.7%,
+    0.2659 80.89%, 0.3465 84.71%,
+    0.4419 88.22%, 0.554 91.48%,
+    0.6835 94.51%, 0.8316 97.34%, 1 100%
+  );
+  --expo-out: linear(
+    0 0%, 0.1684 2.66%, 0.3165 5.49%,
+    0.446 8.52%, 0.5581 11.78%,
+    0.6535 15.29%, 0.7341 19.11%,
+    0.8011 23.3%, 0.8557 27.93%,
+    0.8962 32.68%, 0.9283 38.01%,
+    0.9529 44.08%, 0.9711 51.14%,
+    0.9833 59.06%, 0.9915 68.74%, 1 100%
+  );
+}
+
+::view-transition-group(root) {
+  animation-timing-function: var(--expo-in);
+}
+
+::view-transition-old(root),
+.dark::view-transition-old(root) {
+  animation: reveal 1.5s;
+  animation-fill-mode: both;
+}
+
+::view-transition-new(root) {
+  animation: reveal 1.5s;
+  animation-fill-mode: both;
+  mask: url('/portfolio/toggle.gif')
+     center / 0 no-repeat;
+}
+
+@keyframes reveal {
+  0%{
+      mask-size: 0;
+  }
+  10%{
+      mask-size: 50vmax;
+  }
+  20%{
+      mask-size: 90vmax;
+  }
+  100%{
+      mask-size: 100vmax;
+  }
 }
