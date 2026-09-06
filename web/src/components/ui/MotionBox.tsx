@@ -21,7 +21,10 @@ export const ANIMATIONS = {
     whileInView: { scale: 1 },
   },
   shakeHover: {
-    whileHover: { rotate: [0, -5, 0, 5, 0], transition: { duration: 0.4, ease: (t: number) => Math.round(t) } },
+    whileHover: {
+      rotate: [0, -5, 0, 5, 0],
+      transition: { duration: 0.4, ease: (t: number) => Math.round(t) },
+    },
   },
   startFromLeft: {
     initial: { x: -80, scale: 0.5 },
@@ -46,10 +49,17 @@ function mergeAnimations(animations: Animation[]): Animation {
     animate: Object.assign({}, ...animations.map((a) => a.animate)),
     whileHover: Object.assign({}, ...animations.map((a) => a.whileHover)),
   };
-  return Object.fromEntries(Object.entries(merged).filter(([, v]) => v && Object.keys(v).length)) as Animation;
+  return Object.fromEntries(
+    Object.entries(merged).filter(([, v]) => v && Object.keys(v).length),
+  ) as Animation;
 }
 
-export default function MotionBox({ children, delay = 0, animation = DEFAULT_ANIMATION, ...props }: MotionBoxProps) {
+export default function MotionBox({
+  children,
+  delay = 0,
+  animation = DEFAULT_ANIMATION,
+  ...props
+}: MotionBoxProps) {
   const keys = Array.isArray(animation) ? animation : [animation];
   const merged = mergeAnimations(keys.map((key) => ANIMATIONS[key]));
 

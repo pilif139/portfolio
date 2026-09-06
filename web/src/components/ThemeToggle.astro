@@ -22,7 +22,10 @@ import { Icon } from "astro-icon/components";
       startViewTransition?: (cb: () => void) => void;
     };
     //not every browser supports view transitions, so fall back to immediate swap
-    if (!doc.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      !doc.startViewTransition ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       swap();
       return;
     }

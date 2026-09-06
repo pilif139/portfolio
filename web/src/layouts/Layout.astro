@@ -25,7 +25,9 @@ const navbarLinks = [
     <meta name="generator" content={Astro.generator} />
     <title>pilif139 {title != null ? `- ${title}` : ""}</title>
     <script is:inline>
-      const theme = localStorage.getItem("theme") ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const theme =
+        localStorage.getItem("theme") ??
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       if (theme === "dark") document.documentElement.classList.add("dark");
     </script>
   </head>
@@ -34,10 +36,17 @@ const navbarLinks = [
   >
     <div class="flex flex-col">
       <header class="bg-primary px-3 py-2">
-        <nav class="mx-auto flex max-w-3xl text-xl font-bold items-baseline gap-4">
+        <nav
+          class="mx-auto flex max-w-3xl text-xl font-bold items-baseline gap-4"
+        >
           {
             navbarLinks.map((link, i) => (
-              <MotionBox client:load delay={i * 0.1} className="inline-block active:scale-90" animation={["startFromTop","shakeHover"]}>
+              <MotionBox
+                client:load
+                delay={i * 0.1}
+                className="inline-block active:scale-90"
+                animation={["startFromTop", "shakeHover"]}
+              >
                 <Link
                   href={link.href}
                   className="no-underline px-2 py-0.5 my-0.5 text-white inline-block"
@@ -48,14 +57,18 @@ const navbarLinks = [
               </MotionBox>
             ))
           }
-          <MotionBox client:load animation="startFromTop" className="ml-auto hover:scale-125 transition-transform duration-150 active:scale-90">
+          <MotionBox
+            client:load
+            animation="startFromTop"
+            className="ml-auto hover:scale-125 transition-transform duration-150 active:scale-90"
+          >
             <ThemeToggle />
           </MotionBox>
         </nav>
       </header>
     </div>
     <main class="mx-auto max-w-3xl py-6 px-3 lg:px-0 pb-60">
-        <slot />
+      <slot />
     </main>
   </body>
 </html>

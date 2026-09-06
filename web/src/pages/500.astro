@@ -6,10 +6,18 @@ import { COLORS } from "@/lib/colors";
 ---
 
 <Layout title="500 server error">
-  <MotionBox client:load style={{ backgroundColor: COLORS.pink }} className="inline-block px-3 py-1 my-2">
+  <MotionBox
+    client:load
+    style={{ backgroundColor: COLORS.pink }}
+    className="inline-block px-3 py-1 my-2"
+  >
     <h1 class="text-2xl font-bold text-white">500: internal server error</h1>
   </MotionBox>
   <p class="text-base">
-    something went wrong. <Link href="/portfolio" style={{ backgroundColor: COLORS.yellow }} className="px-2 py-0.5 my-0.5 text-black">go home</Link>
+    something went wrong. <Link
+      href="/portfolio"
+      style={{ backgroundColor: COLORS.yellow }}
+      className="px-2 py-0.5 my-0.5 text-black">go home</Link
+    >
   </p>
 </Layout>

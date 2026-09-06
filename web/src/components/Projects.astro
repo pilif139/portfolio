@@ -5,12 +5,17 @@ import TechList from "./TechList.astro";
 import Link from "./ui/Link";
 import { COLORS, randomColor } from "@/lib/colors";
 
-const projects = (await getCollection("projects"))
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const projects = (await getCollection("projects")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
 ---
 
 <section>
-  <MotionBox client:load style={{ backgroundColor: COLORS.red, rotate: "-1.2deg" }} className="inline-block px-2 py-1 my-2">
+  <MotionBox
+    client:load
+    style={{ backgroundColor: COLORS.red, rotate: "-1.2deg" }}
+    className="inline-block px-2 py-1 my-2"
+  >
     <h2 class="text-xl font-bold text-white">Projects</h2>
   </MotionBox>
   <ul class="space-y-3">

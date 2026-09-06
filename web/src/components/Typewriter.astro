@@ -5,7 +5,9 @@
 <script>
   import animateTypewriter from "@/components/ui/animateTypewriter";
 
-  document.querySelectorAll<HTMLElement>(".typewriter-box > *").forEach((el) => {
-    animateTypewriter(el, el.textContent ?? "", 90);
-  });
+  document
+    .querySelectorAll<HTMLElement>(".typewriter-box > *")
+    .forEach((el) => {
+      animateTypewriter(el, el.textContent ?? "", 90);
+    });
 </script>

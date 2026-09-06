@@ -14,12 +14,19 @@ const iconName = (t: string) => t.toLowerCase().replace(/[.\s]/g, "");
 const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
 ---
 
-<div class={`tech-list relative flex flex-wrap items-center gap-2 ${className}`}>
+<div
+  class={`tech-list relative flex flex-wrap items-center gap-2 ${className}`}
+>
   {
     tech.map((t, id) => (
       <span class="tech-item text-accent dark:text-foreground dark:bg-primary shadow-md px-1 py-0.5 inline-flex items-center gap-2 border-2">
         {hasIcon(t) && (
-          <Icon name={`devicon:${iconName(t)}`} class="shrink-0" size="18" aria-label={`${t} icon`}/>
+          <Icon
+            name={`devicon:${iconName(t)}`}
+            class="shrink-0"
+            size="18"
+            aria-label={`${t} icon`}
+          />
         )}
         {t}
       </span>
@@ -80,7 +87,7 @@ const hasIcon = (t: string) => iconName(t) in icons.devicon.icons;
       // reveal the hidden items one by one, typewriting each label
       const hidden = items.filter((el) => el.style.display === "none");
       stagger(hidden.length, 100, (i) => {
-       hidden[i].style.display = 'flex';
+        hidden[i].style.display = "flex";
       });
     });
 
